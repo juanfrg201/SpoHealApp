@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   def create
     if !User.find_by(email: user_params[:email])
       @user = User.new(user_params)
-
       if @user.save
         session[:user_id] = @user.id
         redirect_to new_user_user_parametrization_path(user_id: @user.id)
@@ -16,6 +15,7 @@ class UsersController < ApplicationController
         redirect_to root_path
       end
     else
+      session[:user_id] = nil
       flash[:error] = 'Correo ya usado'
       redirect_to root_path
     end

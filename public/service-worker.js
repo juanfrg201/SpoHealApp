@@ -1,4 +1,4 @@
-const CACHE_NAME = 'SpoHealApp-Cache-v11';
+const CACHE_NAME = 'SpoHealApp-Cache-v12';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -6,8 +6,11 @@ self.addEventListener('install', (event) => {
       return cache.addAll([
         '/',
         '/manifest.json',
-        '/favicon.ico'
+        '/favicon.ico',
       ]);
+    })
+    .catch((error) => {
+      console.error('Error durante la instalación del Service Worker:', error);
     })
   );
 });
@@ -22,6 +25,9 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
+    })
+    .catch((error) => {
+      console.error('Error durante la activación del Service Worker:', error);
     })
   );
 });
