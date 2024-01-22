@@ -1,0 +1,37 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Inicio de Sesión</h1>
+
+    <%= form_tag(authenticate_users_path, method: :post) do %>
+      <div class="field">
+        <%= label_tag :email, 'Email', class: 'label' %>
+        <div class="control">
+          <%= text_field_tag :email, nil, class: 'input', required: true %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= label_tag :password, 'Contraseña', class: 'label' %>
+        <div class="control">
+          <%= password_field_tag :password, nil, class: 'input', required: true %>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= submit_tag 'Iniciar Sesión', class: 'button is-primary' %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="notification is-danger is-light has-text-centered" role="alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <div class="has-text-centered">
+      ¿No tienes una cuenta? <%= link_to 'Regístrate aquí', new_user_path, class: 'button is-info' %>
+    </div>
+  </div>
+</section>
