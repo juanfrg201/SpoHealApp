@@ -11,20 +11,6 @@
     <%= favicon_link_tag asset_path('SPOHEALAPP.jpg') %>
     <link rel="manifest" href="/manifest.json">
 
-    <% flash.each do |key, value| %>
-      <% type =
-        case key.to_s
-        when 'notice' then 'is-success'
-        when 'error' then 'is-danger'
-        else 'is-info' # O cualquier clase predeterminada para otros tipos de mensajes flash
-        end
-      %>
-      <div class="notification <%= type %> is-light has-text-centered" role="alert">
-        <button class="delete" onclick="this.parentNode.style.display='none'"></button>
-        <%= value %>
-      </div>
-    <% end %>
-
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/service-worker.js')
@@ -114,6 +100,19 @@
   
         </div>
       </nav>
+    <% end %>
+    <% flash.each do |key, value| %>
+      <% type =
+        case key.to_s
+        when 'notice' then 'is-success'
+        when 'error' then 'is-danger'
+        else 'is-info' # O cualquier clase predeterminada para otros tipos de mensajes flash
+        end
+      %>
+      <div class="notification <%= type %> is-light has-text-centered" role="alert">
+        <button class="delete" onclick="this.parentNode.style.display='none'"></button>
+        <%= value %>
+      </div>
     <% end %>
     <%= yield %>
   </body>

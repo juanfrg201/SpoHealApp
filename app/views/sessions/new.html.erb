@@ -5,28 +5,28 @@
         <p class="title is-4 has-text-success">Inicio de Sesión</p>
       </div>
 
-      <%= form_tag(new_session_path, method: :post) do %>
+      <%= form_with(url: sessions_path, method: :post) do |f| %>
         <div class="field">
-          <%= label_tag :email, 'Email', class: 'label' %>
+          <%= f.label :email, 'Email', class: 'label' %>
           <div class="control is-expanded">
-            <%= text_field_tag :email, nil, class: 'input is-success', required: true %>
+            <%= f.text_field :email, class: 'input is-success', required: true %>
           </div>
         </div>
 
         <div class="field">
-          <%= label_tag :password, 'Contraseña', class: 'label' %>
+          <%= f.label :password, 'Contraseña', class: 'label' %>
           <div class="control is-expanded">
-            <%= password_field_tag :password, nil, class: 'input is-success', required: true %>
+            <%= f.password_field :password, class: 'input is-success', required: true %>
           </div>
         </div>
 
         <div class="field is-grouped">
           <div class="control is-expanded">
-            <%= submit_tag 'Iniciar Sesión', class: 'button is-success' %>
+            <%= f.submit 'Iniciar Sesión', class: 'button is-success' %>
           </div>
         </div>
 
-        <div>
+        <div class="has-text-centered">
           ¿No tienes una cuenta? <%= link_to 'Regístrate aquí', new_user_path, class: 'button is-primary' %>
         </div>
       <% end %>
