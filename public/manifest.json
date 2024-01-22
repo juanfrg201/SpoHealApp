@@ -1,7 +1,7 @@
 {
   "name": "SpoHealApp",
   "short_name": "SpoHealApp",
-  "start_url": "/",
+  "start_url": "./sessions/new/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
