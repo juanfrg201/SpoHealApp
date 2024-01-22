@@ -10,7 +10,7 @@ class User::UserParametrizationsController < ApplicationController
     @user_parametrization = @user.build_user_parametrization(user_parameterization_params)
 
     if @user_parametrization.save
-      redirect_to root_path, notice: 'Parámetros del usuario creados exitosamente.'
+      redirect_to home_pages_path, notice: 'Parámetros del usuario creados exitosamente.'
     else
       render :new
     end
