@@ -1,4 +1,4 @@
-const CACHE_NAME = 'SpoHealApp-Cache-v6';
+const CACHE_NAME = 'SpoHealApp-Cache-v7';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -8,14 +8,6 @@ self.addEventListener('install', (event) => {
         '/manifest.json',
         '/favicon.ico'
       ]);
-    })
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
     })
   );
 });
