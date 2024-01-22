@@ -1,2 +1,39 @@
-<h1>HomePages#index</h1>
-<p>Find me in app/views/home_pages/index.html.erb</p>
+<section class="hero is-fullheight">
+  <div class="hero-head">
+    <img src="<%= asset_path('SPOHEALAPP.png') %>" alt="Imagen de Encabezado" style="width: 100%;">
+  </div>
+
+  <!-- Cuerpo de la sección -->
+  <div class="hero-body">
+    <div class="container">
+      <!-- Card con tabla -->
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            Dias activos
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content mt-0">
+            <!-- Tabla con estilos responsivos -->
+            <%= render 'table_info' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <header class="card-header">
+          <p class="card-header-title">
+            Recomendaciones
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content mt-0">
+            <!-- Tabla con estilos responsivos -->
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

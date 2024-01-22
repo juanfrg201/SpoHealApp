@@ -70,7 +70,7 @@
 
           <div class="navbar-end">
             <%= form_tag session_path(id: current_user.id), method: :delete do %>
-              <%= submit_tag 'Cerrar Sesión', class: 'button is-danger', data: { confirm: '¿Estás seguro?' } %>
+              <%= submit_tag 'Cerrar Sesión', class: 'navbar-item', data: { confirm: '¿Estás seguro?' } %>
             <% end %>
           </div>
         </div>
