@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  weight: MyString
+  height: MyString
+  imc: MyString
+  sport_medical_restriccion: MyString
+  sport_muscle_pains: MyString
+  general_pain: MyString
+  is_hipertension: MyString
+  is_asthma: MyString
+  is_chest_pain: MyString
+  pain_cardiac: MyString
+  cardiac_family_pain: MyString
+  cholesterol_pain: MyString
+  dizzines_pain: MyString
+  smoke_pain: false
+  covid_19: false
+
+two:
+  user: two
+  weight: MyString
+  height: MyString
+  imc: MyString
+  sport_medical_restriccion: MyString
+  sport_muscle_pains: MyString
+  general_pain: MyString
+  is_hipertension: MyString
+  is_asthma: MyString
+  is_chest_pain: MyString
+  pain_cardiac: MyString
+  cardiac_family_pain: MyString
+  cholesterol_pain: MyString
+  dizzines_pain: MyString
+  smoke_pain: false
+  covid_19: false
