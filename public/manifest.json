@@ -10,6 +10,16 @@
       "src": "/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
+    },
+    {
+      "src": "/spoheal_192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/spoheal_512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
     }
   ]
 }
