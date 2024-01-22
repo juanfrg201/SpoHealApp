@@ -4,14 +4,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    if !User.find_by(email: user_params[:email])
+      @user = User.new(user_params)
 
-    if @user.save
-      # Loguear al usuario después de crear la cuenta
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Usuario creado exitosamente.'
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to new_user_user_parametrization_path(user_id: @user.id)
+      else
+        flash[:error] = 'Usuario no encontrado'
+        redirect_to root_path
+      end
     else
-      redirect_to root_path, error: 'Error'
+      flash[:error] = 'Correo ya usado'
+      redirect_to root_path
     end
   end
 
@@ -20,15 +25,12 @@ class UsersController < ApplicationController
 
   def authenticate
     user = User.find_by(email: params[:email])
-
-    if user
-      # Iniciar sesión y redirigir a la página principal
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to root_path, notice: 'Inicio de sesión exitoso.'
     else
-      # Mostrar mensaje de error y volver a la página de login
-      flash.now[:alert] = 'Email o contraseña incorrectos.'
-      redirect_to root_path, error: 'Usuario no encontrador'
+      flash[:error] = 'Usuario no encontrado, por favor registrate'
+      redirect_to root_path
     end
   end
 
