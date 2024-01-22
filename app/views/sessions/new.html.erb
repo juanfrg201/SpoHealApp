@@ -1,37 +1,42 @@
 <section class="section">
-  <div class="container">
-    <h1 class="title">Inicio de Sesión</h1>
+  <div class="card box has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <p class="title is-4 has-text-success">Inicio de Sesión</p>
+      </div>
 
-    <%= form_tag(new_session_path, method: :post) do %>
-      <div class="field">
-        <%= label_tag :email, 'Email', class: 'label' %>
-        <div class="control">
-          <%= text_field_tag :email, nil, class: 'input', required: true %>
+      <%= form_tag(new_session_path, method: :post) do %>
+        <div class="field">
+          <%= label_tag :email, 'Email', class: 'label' %>
+          <div class="control is-expanded">
+            <%= text_field_tag :email, nil, class: 'input is-success', required: true %>
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <%= label_tag :password, 'Contraseña', class: 'label' %>
-        <div class="control">
-          <%= password_field_tag :password, nil, class: 'input', required: true %>
+        <div class="field">
+          <%= label_tag :password, 'Contraseña', class: 'label' %>
+          <div class="control is-expanded">
+            <%= password_field_tag :password, nil, class: 'input is-success', required: true %>
+          </div>
         </div>
-      </div>
 
-      <div class="field is-grouped">
-        <div class="control">
-          <%= submit_tag 'Iniciar Sesión', class: 'button is-primary' %>
+        <div class="field is-grouped">
+          <div class="control is-expanded">
+            <%= submit_tag 'Iniciar Sesión', class: 'button is-success' %>
+          </div>
         </div>
-      </div>
-    <% end %>
 
-    <% if flash[:alert] %>
-      <div class="notification is-danger is-light has-text-centered" role="alert">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
+        <div>
+          ¿No tienes una cuenta? <%= link_to 'Regístrate aquí', new_user_path, class: 'button is-primary' %>
+        </div>
+      <% end %>
 
-    <div class="has-text-centered">
-      ¿No tienes una cuenta? <%= link_to 'Regístrate aquí', new_user_path, class: 'button is-info' %>
+      <% if flash[:alert] %>
+        <div class="notification is-danger is-light has-text-centered" role="alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
+

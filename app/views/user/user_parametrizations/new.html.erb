@@ -1,116 +1,115 @@
-<!-- app/views/user/user_parametrizations/new.html.erb -->
-
 <section class="section">
-  <div class="container">
-    <h1 class="title">Nuevos Parámetros de Usuario</h1>
-    <div class="columns">
-      <div class="column is-half">
-        <%= form_with(model: [@user, @user_parametrization], url: user_user_parametrizations_path(@user), method: :post, local: true) do |form| %>
-          <div class="field">
-            <%= form.label :weight, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :weight, options_for_select([[true, 'Sí'], [false, 'No']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :height, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :height, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :sport_medical_restriccion, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :sport_medical_restriccion, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :sport_muscle_pains, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :sport_muscle_pains, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :general_pain, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :general_pain, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :is_hipertension, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :is_hipertension, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :is_asthma, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :is_asthma, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :is_chest_pain, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :is_chest_pain, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :pain_cardiac, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :pain_cardiac, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :cardiac_family_pain, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :cardiac_family_pain, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :cholesterol_pain, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :cholesterol_pain, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :dizzines_pain, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :dizzines_pain, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :smoke_pain, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :smoke_pain, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <%= form.label :covid_19, class: "label" %>
-            <div class="select is-primary">
-              <%= form.select :covid_19, options_for_select([[false, 'No'], [true, 'Sí']]), {}, class: "select" %>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <%= form.submit "Guardar", class: "button is-primary" %>
-            </div>
-          </div>
-        <% end %>
+  <div class="card box has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <p class="title is-4 has-text-success">Parametrizacion</p>
       </div>
+
+      <%= form_with(model: [@user, @user_parametrization], url: user_user_parametrizations_path(@user), method: :post, local: true) do |form| %>
+
+        <div class="field">
+          <%= form.label :weight, "Tu peso" , class: "label" %>
+          <%= form.text_field :weight, class: "input is-primary" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :height, "Tu altura"  , class: "label" %>
+          <%= form.text_field :height, class: "input is-primary"  %>     
+        </div>
+
+        <div class="field">
+          <%= form.label :sport_medical_restriccion, "Restriccion al deporte? ", class: "label" %>
+          <div class="select is-primary">
+            <%= form.select :sport_medical_restriccion, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+          </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :sport_muscle_pains, "Dolores musculares? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :sport_muscle_pains, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :general_pain, "Dolores generales? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :general_pain, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :is_hipertension, "Tienes hipertension? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :is_hipertension, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :is_asthma, "Tienes asma? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :is_asthma, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :is_chest_pain, "Dolores en el pecho? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :is_chest_pain, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field"> 
+        <%= form.label :pain_cardiac, "Dolores del corazon? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :pain_cardiac, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :cardiac_family_pain, "Antecedentes cardiacos? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :cardiac_family_pain, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :cholesterol_pain, "Problemas de colesterol? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :cholesterol_pain, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :dizzines_pain, "Sufres de mareos?", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :dizzines_pain, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :smoke_pain, "Fumas? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :smoke_pain, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :covid_19, "Tienes Covid 19? ", class: "label" %>
+        <div class="select is-primary">
+          <%= form.select :covid_19, options_for_select([["No", false], ["Si",  true]]), {}, class: "select" %>
+        </div>
+        </div>
+
+        <!-- Otros campos o botones aquí -->
+        <div class="field is-grouped mt-4">
+          <div class="control">
+            <%= form.submit "Guardar", class: "button is-success" %>
+          </div>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </section>
+
