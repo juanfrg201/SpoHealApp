@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  activity_type: one
+  name: MyString
+  description: MyString
+  tutorial: MyString
+  benefits: MyString
+  identifier: 1
+  intensity: 1
+  duartion: 1
+
+two:
+  activity_type: two
+  name: MyString
+  description: MyString
+  tutorial: MyString
+  benefits: MyString
+  identifier: 1
+  intensity: 1
+  duartion: 1

@@ -10,9 +10,83 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_22_170829) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_22_234926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_days", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "day"
+    t.date "start_week"
+    t.date "end_week"
+    t.string "mensage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_active_days_on_user_id"
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.bigint "activity_type_id", null: false
+    t.string "name"
+    t.string "description"
+    t.string "tutorial"
+    t.string "benefits"
+    t.integer "identifier"
+    t.integer "intensity"
+    t.integer "duartion"
+    t.boolean "sport_medical_restriccion"
+    t.boolean "sport_muscle_pains"
+    t.boolean "general_pain"
+    t.boolean "is_hipertension"
+    t.boolean "is_asthma"
+    t.boolean "is_chest_pain"
+    t.boolean "pain_cardiac"
+    t.boolean "cardiac_family_pain"
+    t.boolean "cholesterol_pain"
+    t.boolean "dizzines_pain"
+    t.boolean "smoke_pain"
+    t.boolean "covid_19"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_type_id"], name: "index_activities_on_activity_type_id"
+  end
+
+  create_table "activity_recomendations", force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_activity_recomendations_on_activity_id"
+    t.index ["user_id"], name: "index_activity_recomendations_on_user_id"
+  end
+
+  create_table "activity_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "benefits"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "communities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.string "issue"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_communities_on_user_id"
+  end
+
+  create_table "community_posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "community_id", null: false
+    t.string "issue"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_community_posts_on_community_id"
+    t.index ["user_id"], name: "index_community_posts_on_user_id"
+  end
 
   create_table "sport_users", force: :cascade do |t|
     t.string "name"
@@ -54,5 +128,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_170829) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "active_days", "users"
+  add_foreign_key "activities", "activity_types"
+  add_foreign_key "activity_recomendations", "activities"
+  add_foreign_key "activity_recomendations", "users"
+  add_foreign_key "communities", "users"
+  add_foreign_key "community_posts", "communities"
+  add_foreign_key "community_posts", "users"
   add_foreign_key "user_parametrizations", "users"
 end
