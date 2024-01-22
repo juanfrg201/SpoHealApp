@@ -27,6 +27,39 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <%= link_to root_path, class: 'navbar-item' do %>
+            SpoHealApp
+          <% end %>
+
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-start">
+            <!-- Agrega tus enlaces de navegación aquí -->
+            <%= link_to 'Inicio', root_path, class: 'navbar-item' %>
+            <%= link_to 'Comunidades', root_path, class: 'navbar-item' %>
+            <%= link_to 'Ejercicios', root_path, class: 'navbar-item' %>
+            <%= link_to 'Perfil', root_path, class: 'navbar-item' %>
+            <!-- Agrega más enlaces según sea necesario -->
+          </div>
+
+          <div class="navbar-end">
+            <%= form_tag session_path(id: current_user.id), method: :delete do %>
+              <%= submit_tag 'Cerrar Sesión', class: 'button is-danger', data: { confirm: '¿Estás seguro?' } %>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>
@@ -41,4 +74,21 @@
         console.error('Error al registrar el Service Worker:', error);
       });
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Agrega el script para activar el botón de hamburguesa
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach((el) => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
+  });
 </script>

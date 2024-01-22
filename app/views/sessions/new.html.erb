@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="title">Inicio de Sesión</h1>
 
-    <%= form_tag(authenticate_users_path, method: :post) do %>
+    <%= form_tag(new_session_path, method: :post) do %>
       <div class="field">
         <%= label_tag :email, 'Email', class: 'label' %>
         <div class="control">

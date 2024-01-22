@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def new
     @user = User.new
   end
@@ -18,26 +19,6 @@ class UsersController < ApplicationController
       flash[:error] = 'Correo ya usado'
       redirect_to root_path
     end
-  end
-
-  def login 
-  end
-
-  def authenticate
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to root_path, notice: 'Inicio de sesión exitoso.'
-    else
-      flash[:error] = 'Usuario no encontrado, por favor registrate'
-      redirect_to root_path
-    end
-  end
-
-  def destroy_session 
-    user = User.find(params[:id])
-    session[:user_id].destroy
-    redirect_to root_path, notice: 'Inicio de sesión exitoso.'
   end
 
 
