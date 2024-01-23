@@ -1,0 +1,26 @@
+<section class="section mb-6">
+  <div class="card box has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <p class="title is-4 has-text-success">Tu Perfil</p>
+      </div>
+
+      <div class="content ">
+        <p><strong>Nombre:</strong> <%= @user.name %></p>
+      </div>
+
+      <div class="content">
+        <p><strong>Apellido:</strong> <%= @user.last_name %></p>
+      </div>
+
+       <div class="content ">
+        <p><strong>Correo Electrónico:</strong> <%= @user.email %></p>
+      </div>
+
+       <div class="content">
+          <p><strong>Edad:</strong> <%= @user.years %></p>
+      </div>
+      <%= link_to 'Editar Perfil', edit_user_path(@user.id), class: 'button is-success' %>
+    </div>
+  </div>
+</section>

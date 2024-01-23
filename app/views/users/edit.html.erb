@@ -1,0 +1,46 @@
+<section class="section mb-6">
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <p class="title is-4 has-text-success">Editar Perfil</p>
+      </div>
+
+      <%= form_with(model: @user, local: true) do |form| %>
+        <div class="field">
+          <%= form.label :name, class: 'label' %>
+          <div class="control">
+            <%= form.text_field :name, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :last_name, class: 'label' %>
+          <div class="control">
+            <%= form.text_field :last_name, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :email, class: 'label' %>
+          <div class="control">
+            <%= form.text_field :email, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :years, class: 'label' %>
+          <div class="control">
+            <%= form.number_field :years, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit 'Actualizar Perfil', class: 'button is-success' %>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to 'Volver a Mi Perfil', user_path(@user.id) %>
+    </div>
+  </div>
+</section>

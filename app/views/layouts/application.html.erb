@@ -101,9 +101,10 @@
               <p class="tab-bar-text">Ejercicios</p>
             </div>
             <div class="tab-bar-button">
-              <!-- Cambia la ruta de la imagen según sea necesario -->
-              <img src="<%= asset_path('user.png') %>" alt="Logo perfil" class="tab-bar-imagebar">
-              <p class="tab-bar-text">Perfil</p>
+              <%= link_to user_path(id: current_user.id), class: "tab-bar-imagebar" do %>
+                 <img src="<%= asset_path('user.png') %>" alt="Logo comunidades" class="tab-bar-imagebar">
+                <p class="tab-bar-text">Perfil</p>
+              <% end %>
             </div>
             <div class="tab-bar-button">
               <%= link_to root_path, class: "tab-bar-imagebar" do %>
