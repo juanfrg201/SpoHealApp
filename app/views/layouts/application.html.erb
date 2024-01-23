@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "main", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= favicon_link_tag asset_path('SPOHEALAPP.png') %>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -46,39 +47,7 @@
   </head>
 
   <body>
-    <% if current_user %>
-      <nav class="navbar is-success" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <%= link_to root_path, class: 'navbar-item' do %>
-            SpoHealApp
-          <% end %>
-
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-
-        <div id="navbarMenu" class="navbar-menu">
-          <div class="navbar-start">
-            <!-- Agrega tus enlaces de navegación aquí -->
-            <%= link_to 'Inicio', root_path, class: 'navbar-item' %>
-            <%= link_to 'Comunidades', community_index_path, class: 'navbar-item' %>
-            <%= link_to 'Ejercicios', root_path, class: 'navbar-item' %>
-            <%= link_to 'Perfil', root_path, class: 'navbar-item' %>
-            <!-- Agrega más enlaces según sea necesario -->
-          </div>
-
-          <div class="navbar-end">
-            <%= form_tag session_path(id: current_user.id), method: :delete do %>
-              <%= submit_tag 'Cerrar Sesión', class: 'navbar-item', data: { confirm: '¿Estás seguro?' } %>
-            <% end %>
-          </div>
-        </div>
-      </nav>
-    <% else  %>
+    <% if !current_user %>
       <nav class="navbar is-success" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <%= link_to root_path, class: 'navbar-item' do %>
@@ -97,12 +66,10 @@
             <%= link_to 'Inciar Sesion', new_session_path, class: 'navbar-item' %>
             <%= link_to 'Registrate', new_user_path, class: 'navbar-item' %>
         
-            <!-- Agrega más enlaces según sea necesario -->
           </div>
-
-  
         </div>
       </nav>
+      
     <% end %>
     <% flash.each do |key, value| %>
       <% type =
@@ -117,6 +84,48 @@
         <%= value %>
       </div>
     <% end %>
+    <% if current_user %>
+    <div class="header-container">
+      <!-- Añade la clase logo-image -->
+      <img src="<%= asset_path('LogoBG_p.png') %>" alt="Logo APP" class="logo-image">
+    </div>
+    <% end %>
     <%= yield %>
+    <% if current_user %>
+      <div class="is-fixed-bottom">
+        <div class="tab-bar">
+          <div class="tab-bar-buttons">
+            <div class="tab-bar-button">
+              <!-- Cambia la ruta de la imagen según sea necesario -->
+              <img src="<%= asset_path('lista.png') %>" alt="Logo ejercicios" class="tab-bar-imagebar">
+              <p class="tab-bar-text">Ejercicios</p>
+            </div>
+            <div class="tab-bar-button">
+              <!-- Cambia la ruta de la imagen según sea necesario -->
+              <img src="<%= asset_path('user.png') %>" alt="Logo perfil" class="tab-bar-imagebar">
+              <p class="tab-bar-text">Perfil</p>
+            </div>
+            <div class="tab-bar-button">
+              <%= link_to root_path, class: "tab-bar-imagebar" do %>
+                 <img src="<%= asset_path('user.png') %>" alt="Logo comunidades" class="tab-bar-imagebar">
+                <p class="tab-bar-text">Inicio</p>
+              <% end %>
+            </div>
+            <div class="tab-bar-button">
+              <!-- Cambia la ruta de la imagen según sea necesario -->
+              <img src="<%= asset_path('ruta.png') %>" alt="Logo ruta" class="tab-bar-imagebar">
+              <p class="tab-bar-text">Ruta</p>
+            </div>
+            <div class="tab-bar-button">
+              <%= link_to community_index_path, class: "tab-bar-imagebar" do %>
+                 <img src="<%= asset_path('comunidades.png') %>" alt="Logo comunidades" class="tab-bar-imagebar">
+                <p class="tab-bar-text">Comunidades</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end  %>
   </body>
 </html>

@@ -1,9 +1,5 @@
-<section class="hero is-fullheight is-success">
-  <div class="hero-head">
-    <img src="<%= asset_path('SPOHEALAPP.png') %>" alt="Imagen de Encabezado" style="width: 100%;">
-  </div>
-
-  <!-- Cuerpo de la sección -->
+<div class="container">
+  <div class="separator"></div>
   <div class="hero-body">
     <div class="container">
       <!-- Card con tabla -->
@@ -34,30 +30,10 @@
         <div class="card-content">
           <div class="content mt-0">
             <!-- Aquí puedes agregar el contenido que desees -->
-            <div class="slick-carousel">
-              <!-- Card 1 -->
-              <div class="card">
-                <div class="card-content">
-                  <div class="content">
-                    <p>Contenido de la primera card...</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Card 2 -->
-              <div class="card">
-                <div class="card-content">
-                  <div class="content">
-                    <p>Contenido de la segunda card...</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Agrega más cards según sea necesario -->
-            </div>
+            <%= render "carrousel"%>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>

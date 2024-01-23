@@ -1,0 +1,111 @@
+.text2 {}
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #146c51;
+  align-items: flex-end;
+  z-index: 1000;  /* Alinea los elementos al final */
+}
+.tab-bar-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.tab-bar-button {
+  flex: 1;
+  padding: 2px;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+}
+.tab-bar-text {
+  color: white;
+  font-size: 13px;
+  margin-top: 5px; /* Ajusta según sea necesario */
+}
+.tab-bar-imagebar {
+  width: 35px; /* Ajusta según sea necesario */
+  height: 35px; /* Ajusta según sea necesario */
+}
+/* Ajusta el estilo de la imagen según sea necesario */
+.logo-image {
+  max-width: 100%; /* Ajusta según sea necesario */
+  max-height: 100%; /* Ajusta la altura automáticamente según el ancho */
+  margin-top: 5px; /* Ajusta según sea necesario */
+}
+
+body {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% del alto de la ventana */
+}
+.header-container {
+  flex: 0.1; /* Ajusta según sea necesario */
+  align-items: center;
+  justify-content: center;
+  background-color: #d7eec1;
+  padding: 5px;
+  text-align: center; /* Añadido para centrar la imagen */
+}
+.profile-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px; /* Ajusta según sea necesario */
+}
+.separator {
+  height: 2px;
+  background-color: gray;
+}
+.content-container {
+  flex: 1; /* Cambiado a 1 para ocupar el espacio restante */
+  background-color: white;
+}
+.custom-section-container {
+  display: flex; /* Añadido para que las secciones sean flexibles */
+  flex-direction: row;
+  align-items: center;
+  border: 3px solid green;
+  border-radius: 10px;
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+  margin-top: 10px;
+}
+.bordered-section {
+  border: 2px solid #32a260;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+.first-custom-section {
+  margin-top: 20px;
+}
+.left-section {
+  flex: 1;
+}
+.right-section {
+  flex: 2;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-image {
+  max-width: 75px; /* Ajusta según sea necesario */
+  max-height: 75px; /* Ajusta según sea necesario */
+}
+.section-text {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
