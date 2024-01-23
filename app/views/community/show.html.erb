@@ -1,2 +1,28 @@
-<h1>Community#show</h1>
-<p>Find me in app/views/community/show.html.erb</p>
+<section class="section">
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="is-16by9 has-text-centered">
+        <%= image_tag(@community.image, class: "image is-rounded") %>
+      </div>
+    </div>
+  </div>
+  <div class="card has-shadow-8 mt-2">
+    <div class="card-content">
+      <strong><%= @community.name %></strong>
+    </div>
+    <div class="separator"></div>
+    <div class="card-content has-text-centered">
+      <%= @community.issue %>
+    </div>
+  </div>
+  <div class="is-flex is-justify-content-center mt-3">
+    <%= link_to new_community_path, class: "button is-success is-rounded" do %>
+      Comenta en el post
+    <% end %>
+  </div>
+  <div class="card has-shadow-8 mt-2">
+    <div class="card-content mb-10">
+      
+    </div>
+  </div>
+</section>

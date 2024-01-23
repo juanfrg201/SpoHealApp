@@ -33,6 +33,10 @@ gem 'bulma-rails'
 
 gem "disco"
 
+gem 'image_processing', '~> 1.12'
+
+gem "paperclip", "~> 4.2"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

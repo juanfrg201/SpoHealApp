@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :users, only: [:new, :create]
   resources :community_posts, only: [:new, :create]
-  resources :community, only: [:new, :create, :destroy, :show, :index]
+  resources :community
   resources :user_activities, only: [:new, :create]
   resources :activity_recomendations, only: [:index]
   

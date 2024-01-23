@@ -1,0 +1,42 @@
+<section class="section">
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <p class="title is-4 has-text-success">Crea tu comunidad</p>
+      </div>
+
+      <%= form_with(model: @community, url: community_index_path, method: :post, local: true) do |form| %>
+        <div class="field">
+          <%= form.label :name, class: "label" %>
+          <div class="control">
+            <%= form.text_field :name, class: "input", required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :issue, class: "label" %>
+          <div class="control">
+            <%= form.text_area :issue, class: "textarea", required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+        <%= form.label :image, class: "label" %>
+          <div class="control">
+            <div class="file has-name is-boxed">
+              <label class="file-label">
+                <%= form.file_field :image %>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Crear Comunidad", class: "button is-success" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

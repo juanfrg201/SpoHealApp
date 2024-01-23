@@ -1,9 +1,15 @@
 <div class="container">
   <div class="separator"></div>
   <div class="is-flex is-justify-content-center mt-3">
-    <button class="button is-success is-rounded">Crea tu comunidad</button>
+    <%= link_to new_community_path, class: "button is-success is-rounded" do %>
+      Crea tu comunidad
+    <% end %>
   </div>
   <div class="content-container">
-    <%= render "community_post" %>
+    <% @communities.each do |community| %>
+      <%= link_to community_path(community.id), class: "has-text-black" do %>
+        <%= render "community_post", community: community %>
+      <% end %>
+    <% end %>
   </div>
 </div>
