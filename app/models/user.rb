@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :activity_recomendations
   has_many :communities
   has_many :community_posts
+  has_many :user_activities
 
   def authenticate(password)
     self.password == password ? true : false
