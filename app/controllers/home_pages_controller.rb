@@ -2,6 +2,6 @@ class HomePagesController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @recomendations = set_recomendation
+    @active_days = active_user_day_weeks.pluck(:day)
   end
 end
