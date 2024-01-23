@@ -9,6 +9,7 @@ class User::UserParametrizationsController < ApplicationController
     @user = current_user
     @user_parametrization = @user.build_user_parametrization(user_parameterization_params)
 
+    @user_parametrization.imc = @user_parametrization.calculate_imc
     if @user_parametrization.save
       redirect_to home_pages_path, notice: 'Parámetros del usuario creados exitosamente.'
     else
