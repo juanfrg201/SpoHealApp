@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
   resources :users, only: [:new, :create]
-  resources :community_posts, only: [:new, :create]
-  resources :community
+  resources :community do 
+    resources :community_posts, only: [:new, :create]
+  end
   resources :user_activities, only: [:new, :create]
   resources :activity_recomendations, only: [:index]
   

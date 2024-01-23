@@ -7,6 +7,7 @@ class CommunityController < ApplicationController
   end
 
   def show
+    @community_posts = @community.community_posts
   end
 
   def new

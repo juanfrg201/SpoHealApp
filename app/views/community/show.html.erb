@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section mb-10">
   <div class="card has-shadow-8">
     <div class="card-content">
       <div class="is-16by9 has-text-centered">
@@ -16,13 +16,22 @@
     </div>
   </div>
   <div class="is-flex is-justify-content-center mt-3">
-    <%= link_to new_community_path, class: "button is-success is-rounded" do %>
+    <%= link_to new_community_community_post_path(community_id: @community.id), class: "button is-success is-rounded" do %>
       Comenta en el post
     <% end %>
   </div>
-  <div class="card has-shadow-8 mt-2">
-    <div class="card-content mb-10">
-      
-    </div>
+  <div class="content has-text-centered">
+    <p class="has-text-success mt-2">Mira lo que piensan los otros usuarios</p>
   </div>
+  <% @community_posts.each do |community| %>
+    <div class="card has-shadow-8 mt-2">
+      <div class="card-content">
+        <strong><%= community.issue %></strong>
+      </div>
+      <div class="separator"></div>
+      <div class="card-content has-text-centered">
+        <%= community.body %>
+      </div>
+    </div>
+  <% end %>
 </section>

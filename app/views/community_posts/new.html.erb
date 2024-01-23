@@ -1,2 +1,31 @@
-<h1>CommunityPosts#new</h1>
-<p>Find me in app/views/community_posts/new.html.erb</p>
+<section class="section mb-3">
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <p class="title is-4 has-text-success">Nueva Publicación en <%= @community.name %></p>
+      </div>
+      <%= form_with(model: [@community, @community_post], local: true) do |form| %>
+        <div class="field">
+          <%= form.label :issue, class: 'label' %>
+          <div class="control">
+            <%= form.text_field :issue, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :body, class: 'label' %>
+          <div class="control">
+            <%= form.text_area :body, class: 'textarea', required: true %>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit 'Crear Publicación', class: 'button is-success' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
