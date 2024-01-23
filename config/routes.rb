@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'user_activities/new'
-  get 'user_activities/create'
-  get 'activity_recomendations/index'
   root 'sessions#new'
   
   resources :home_pages, only: [:index]
