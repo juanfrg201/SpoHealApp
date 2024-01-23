@@ -37,6 +37,8 @@ gem 'image_processing', '~> 1.12'
 
 gem "paperclip", "~> 4.2"
 
+gem "aws-sdk-s3", require: false
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
