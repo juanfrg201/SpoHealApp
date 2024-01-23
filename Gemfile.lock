@@ -101,6 +101,9 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    disco (0.4.0)
+      libmf (>= 0.2)
+      numo-narray
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -120,6 +123,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    libmf (0.3.0)
+      ffi
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -146,6 +151,7 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
+    numo-narray (0.9.2.1)
     pg (1.5.4)
     psych (5.1.2)
       stringio
@@ -249,6 +255,7 @@ DEPENDENCIES
   bulma-rails
   capybara
   debug
+  disco
   importmap-rails
   jbuilder
   pg (~> 1.1)
