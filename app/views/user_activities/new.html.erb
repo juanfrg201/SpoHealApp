@@ -1,2 +1,35 @@
-<h1>UserActivities#new</h1>
-<p>Find me in app/views/user_activities/new.html.erb</p>
+<section class="section">
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <p class="title is-4 has-text-success">Registra el ejercicio que hiciste hoy</p>
+      </div>
+
+      <%= form_with(model: @user_activity, url: user_activities_path, method: :post, local: true) do |form| %>
+        <div class="field">
+          <%= form.label :activity_id, "Nombre de la actividad", class: "label" %>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <%= form.select :activity_id, @activities, {}, class: "input", required: true %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :rating, "Nivel de satisfaccion",class: "label" %>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <%= form.select :rating, (1..5).to_a, {}, class: "input", required: true %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Registrar", class: "button is-success" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

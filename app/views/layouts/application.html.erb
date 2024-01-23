@@ -96,9 +96,10 @@
         <div class="tab-bar">
           <div class="tab-bar-buttons">
             <div class="tab-bar-button">
-              <!-- Cambia la ruta de la imagen según sea necesario -->
-              <img src="<%= asset_path('lista.png') %>" alt="Logo ejercicios" class="tab-bar-imagebar">
-              <p class="tab-bar-text">Ejercicios</p>
+              <%= link_to activity_recomendations_path, class: "tab-bar-imagebar" do %>
+                 <img src="<%= asset_path('lista.png') %>" alt="Logo comunidades" class="tab-bar-imagebar">
+                <p class="tab-bar-text">Ejercicios</p>
+              <% end %>
             </div>
             <div class="tab-bar-button">
               <%= link_to user_path(id: current_user.id), class: "tab-bar-imagebar" do %>
@@ -113,7 +114,6 @@
               <% end %>
             </div>
             <div class="tab-bar-button">
-              <!-- Cambia la ruta de la imagen según sea necesario -->
               <img src="<%= asset_path('ruta.png') %>" alt="Logo ruta" class="tab-bar-imagebar">
               <p class="tab-bar-text">Ruta</p>
             </div>
