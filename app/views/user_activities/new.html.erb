@@ -16,10 +16,10 @@
         </div>
 
         <div class="field">
-          <%= form.label :rating, "Nivel de satisfaccion",class: "label" %>
+          <%= form.label :rating, class: "label" %>
           <div class="control">
             <div class="select is-fullwidth">
-              <%= form.select :rating, (1..5).to_a, {}, class: "input", required: true %>
+              <%= form.select :rating, UserActivity.ratings.keys.map { |rating| ["#{rating}", rating] }, {}, class: "input", required: true %>
             </div>
           </div>
         </div>
