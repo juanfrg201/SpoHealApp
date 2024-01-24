@@ -1,4 +1,7 @@
 .text2 {}
+
+/*Todo relacionado a la tab bar*/
+/* Estilos para la tab-bar con mayor altura */
 .tab-bar {
   position: fixed;
   bottom: 0;
@@ -8,34 +11,45 @@
   justify-content: center;
   background-color: #146c51;
   align-items: flex-end;
-  z-index: 1000;  /* Alinea los elementos al final */
+  z-index: 1000;
+  height: 80px; /* Ajusta la altura según sea necesario */
+  border-top-left-radius: 50px; /* Ajusta el radio de las esquinas según sea necesario */
+  border-top-right-radius: 50px; /* Ajusta el radio de las esquinas según sea necesario */
+  border-bottom-left-radius: 50px; /* Ajusta el radio de las esquinas según sea necesario */
+  border-bottom-right-radius: 50px; /* Ajusta el radio de las esquinas según sea necesario */
 }
+
 .tab-bar-buttons {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  height: 100%; /* Ajusta la altura según sea necesario */
 }
+
 .tab-bar-button {
   flex: 1;
   padding: 2px;
   align-items: center;
-  justify-content: flex-start;
-  margin: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   border-radius: 15px;
 }
+
 .tab-bar-text {
   color: white;
   font-size: 13px;
-  margin-top: 5px; /* Ajusta según sea necesario */
+  margin-top: 5px;
 }
+
 .tab-bar-imagebar {
-  width: 35px; /* Ajusta según sea necesario */
-  height: 35px; /* Ajusta según sea necesario */
+  width: 35px;
+  height: 35px;
 }
-/* Ajusta el estilo de la imagen según sea necesario */
+
+/* ... (otros estilos) ... */
+
 .logo-image {
   max-width: 100%; /* Ajusta según sea necesario */
   max-height: 100%; /* Ajusta la altura automáticamente según el ancho */
@@ -108,4 +122,11 @@ body {
   font-weight: bold;
   font-size: 16px;
   text-align: center;
+}
+#registro-btn {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  
 }

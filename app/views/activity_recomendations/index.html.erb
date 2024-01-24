@@ -1,21 +1,55 @@
-<div class="container">
-  <div class="is-flex is-justify-content-center mt-3">
-    <%= link_to new_user_activity_path, class: "button is-success is-rounded" do %>
-      Registra tus Ejercicios
-    <% end %>
-  </div>
-  <div class="content-container">
-    <div class="custom-section-container first-custom-section">
-      <div class="left-section">
-        <div class="image-container">
-          
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="tu_estilo.css"> <!-- Agrega la ruta correcta al archivo CSS externo -->
+    <!-- Resto de tu encabezado HTML -->
+    <style>
+      #registro-btn {
+        transition: 10s; /* Ajusta la duración de la transición según sea necesario (en segundos) */
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var boton = document.getElementById('registro-btn');
+
+        boton.addEventListener('click', function() {
+          // Cambia dinámicamente el contenido del botón al hacer clic
+          if (boton.classList.contains('registrado')) {
+            // Cambia el contenido del botón de vuelta a "+"
+            boton.innerHTML = '+';
+            boton.classList.remove('registrado');
+          } else {
+            // Cambia el contenido del botón y marca como registrado
+            boton.innerHTML = 'Registra un nuevo ejercicio';
+            boton.classList.add('registrado');
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content-container">
+        <div class="custom-section-container first-custom-section">
+          <div class="left-section">
+            <div class="image-container">
+              <img src="<%= asset_path('corredor.png') %>" alt="Logo corredor" class="image">
+            </div>
+          </div>
+          <div class="right-section">
+            <div class="">
+              <p class="section-text">El running es beneficioso así que trota 30 minutos</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="right-section">
-        <div class="">
-          <p class="section-text">El runnig es beneficioso asi que trota 30 minutos</p>
-        </div>
-      </div>
+  
+      <%= link_to new_user_activity_path, class: "button is-success is-rounded mt-3", id: "registro-btn" do %>
+        <!-- Inicia con el contenido "+" -->
+        +
+      <% end %>
     </div>
-  </div>
-</div>
+  </body>
+</html>
