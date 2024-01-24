@@ -1,4 +1,6 @@
 class UserActivitiesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @user_activity = UserActivity.new()
     @activities = Activity.all.pluck(:name, :id)
