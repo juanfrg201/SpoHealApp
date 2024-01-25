@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :community do 
     resources :community_posts, only: [:new, :create]
   end
-  resources :user_activities, only: [:new, :create]
+  resources :user_activities, only: [:new, :create, :index, :show]
   resources :activity_recomendations, only: [:index]
   
   namespace :user do

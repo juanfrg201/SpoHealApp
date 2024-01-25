@@ -1,10 +1,12 @@
-<div class="table-container">
   <table class="table is-fullwidth">
     <tbody>
       <% @active_days.each do |day| %>
         <tr>
           <td><%= day %></td>
-          <td>Muy Bien</td>
+          <td>
+            <%= image_tag('favourite.png', class: 'star-icon' , style: "width: 10%;") %>
+            Muy Bien
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -1,7 +1,10 @@
-<div class="container">
+<div class="container conteiner-margin">
   <div class="is-flex is-justify-content-center mt-3">
     <%= link_to new_user_activity_path, class: "button is-success is-rounded" do %>
       Registra tus Ejercicios
+    <% end %>
+    <%= link_to user_activities_path, class: "button is-success is-rounded ml-2" do %>
+      Historial
     <% end %>
   </div>
   <div class="content-container">

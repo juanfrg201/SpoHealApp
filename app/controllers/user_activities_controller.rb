@@ -1,5 +1,15 @@
 class UserActivitiesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user_activity, only: [:show]
+
+
+  def index 
+    @user_activities = current_user.user_activities.map{ |a| a.activity }
+  end
+
+  def show 
+
+  end
 
   def new
     @user_activity = UserActivity.new()
@@ -17,6 +27,10 @@ class UserActivitiesController < ApplicationController
   end
 
   private 
+
+  def set_user_activity 
+    @user_activity = Activity.find(params[:id])
+  end
 
   def user_activity_params 
     params.require(:user_activity).permit(:activity_id, :rating)

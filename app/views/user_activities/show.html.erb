@@ -1,0 +1,32 @@
+<section class="section conteiner-margin">
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="is-16by9 has-text-centered">
+        <img src="<%= asset_path('corredor.png') %>" alt="Logo corredor" class="image">
+      </div>
+    </div>
+  </div>
+  <div class="card has-shadow-8 mt-2" style="">
+    <div class="card-content  has-text-centered">
+      <strong><%= @user_activity.name %></strong>
+    </div>
+  </div>
+  <div class="card has-shadow-8 mt-2" style="">
+    <div class="content has-text-centered">
+      <p class="has-text-success">Descripcion</p>
+    </div>
+    <div class="separator"></div>
+    <div class="has-text-centered margin-content-card">
+      <%= @user_activity.description %>
+    </div>
+  </div>
+  <div class="card has-shadow-8 mt-2" style="">
+    <div class="content has-text-centered">
+      <p class="has-text-success">Beneficios</p>
+    </div>
+    <div class="separator"></div>
+    <div class="has-text-centered margin-content-card">
+      <%= @user_activity.benefits %>
+    </div>
+  </div>
+</section>

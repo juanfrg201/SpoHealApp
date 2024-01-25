@@ -11,14 +11,10 @@ module Services
 
     def perform
       if @week_active_days.present?
-        if @week_active_days.last.day == @today_day_number
+        if ActiveDay.days[@week_active_days.last.day] == @today_day_number
           @week_active_days.sort_by { |day| ActiveDay.days[day.day] }
         else
-          if ActiveDay.where(user_id: @user.id, start_week: @start_week, end_week: @end_week, day:  @week_active_days.last.day).present? ? false : true
-            register_day
-          else
-            @week_active_days.sort_by { |day| ActiveDay.days[day.day] }
-          end
+          register_day
         end
       else 
         register_day

@@ -1,0 +1,11 @@
+<div class="container conteiner-margin">
+  <div class="content has-text-centered">
+    <p class="title is-4 has-text-success mt-2">Historial</p>
+  </div>
+  
+  <% @user_activities.each do |activity| %>
+    <%= link_to user_activity_path(activity.id), class: "has-text-black" do %>
+      <%= render "activities", activity: activity  %>
+    <% end %>
+  <% end %>
+</div>

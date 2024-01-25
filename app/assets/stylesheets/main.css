@@ -119,9 +119,21 @@ body {
   max-height: 75px; /* Ajusta según sea necesario */
 }
 .section-text {
+  font-size: 16px;
+  text-align: center;
+}
+.title-text {
   font-weight: bold;
   font-size: 16px;
   text-align: center;
+}
+.margin-content-card {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.conteiner-margin {
+  margin-bottom: 100%;
 }
 #registro-btn {
   position: absolute;
