@@ -76,6 +76,7 @@ body {
   background-color: gray;
 }
 .content-container {
+  width: 100%;
   flex: 1; /* Cambiado a 1 para ocupar el espacio restante */
   background-color: white;
 }
