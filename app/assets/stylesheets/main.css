@@ -13,10 +13,6 @@
   align-items: flex-end;
   z-index: 1000;
   height: 80px; /* Ajusta la altura según sea necesario */
-  border-top-left-radius: 50px; /* Ajusta el radio de las esquinas según sea necesario */
-  border-top-right-radius: 50px; /* Ajusta el radio de las esquinas según sea necesario */
-  border-bottom-left-radius: 50px; /* Ajusta el radio de las esquinas según sea necesario */
-  border-bottom-right-radius: 50px; /* Ajusta el radio de las esquinas según sea necesario */
 }
 
 .tab-bar-buttons {
