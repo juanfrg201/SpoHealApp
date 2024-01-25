@@ -12,7 +12,7 @@
   background-color: #146c51;
   align-items: flex-end;
   z-index: 1000;
-  height: 80px; /* Ajusta la altura según sea necesario */
+  height: 60px; 
 }
 
 .tab-bar-buttons {
