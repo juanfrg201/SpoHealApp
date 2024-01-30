@@ -1,4 +1,4 @@
-const CACHE_NAME = 'SpoHealApp-Cache-v31';
+const CACHE_NAME = 'SpoHealApp-Cache-v32';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -33,10 +33,14 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-self.addEventListener('push', (event) => {
-  // Get the push message
-  var message = event.data;
-  // Display a notification
-  event.waitUntil(self.registration.showNotification('Example'));
+self.addEventListener("push", (event) => {
+  let title = (event.data && event.data.text()) || "Yay a message";
+  let body = "We have received a push message";
+  let tag = "push-simple-demo-notification-tag";
+  let icon = '/assets/my-logo-120x120.png';
+
+  event.waitUntil(
+    self.registration.showNotification(title, { body, icon, tag })
+  )
 });
 
