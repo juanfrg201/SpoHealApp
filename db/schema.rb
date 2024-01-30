@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_30_181955) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_30_215151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -188,6 +188,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_181955) do
     t.string "p256dh_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_web_push_notifications_on_user_id"
   end
 
   create_table "webpush_subscriptions", force: :cascade do |t|
@@ -211,5 +213,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_181955) do
   add_foreign_key "user_activities", "activities"
   add_foreign_key "user_activities", "users"
   add_foreign_key "user_parametrizations", "users"
+  add_foreign_key "web_push_notifications", "users"
   add_foreign_key "webpush_subscriptions", "users"
 end

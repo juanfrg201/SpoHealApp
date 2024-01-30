@@ -3,6 +3,7 @@ class CommunityController < ApplicationController
   before_action :set_community, only: [:show]
 
   def index
+    WebPushNotification.where(user_id: current_user.id).last.send_message("Bienvenido a SpohealApp")
     @communities = Community.all
   end
 
