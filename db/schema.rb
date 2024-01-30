@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_23_142109) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_30_181955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -117,6 +117,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_23_142109) do
     t.index ["user_id"], name: "index_community_posts_on_user_id"
   end
 
+  create_table "push_messages", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.string "icon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sport_users", force: :cascade do |t|
+    t.string "name"
+    t.string "last_name"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "endpoint"
+    t.json "keys"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_activities", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "activity_id", null: false
@@ -159,6 +182,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_23_142109) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "web_push_notifications", force: :cascade do |t|
+    t.string "endpoint"
+    t.string "auth_key"
+    t.string "p256dh_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "webpush_subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "endpoint"
+    t.json "keys"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_webpush_subscriptions_on_user_id"
+  end
+
   add_foreign_key "active_days", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
@@ -171,4 +211,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_23_142109) do
   add_foreign_key "user_activities", "activities"
   add_foreign_key "user_activities", "users"
   add_foreign_key "user_parametrizations", "users"
+  add_foreign_key "webpush_subscriptions", "users"
 end

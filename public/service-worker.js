@@ -32,3 +32,11 @@ self.addEventListener('activate', (event) => {
     })
   );
 });
+
+self.addEventListener('push', (event) => {
+  // Get the push message
+  var message = event.data;
+  // Display a notification
+  event.waitUntil(self.registration.showNotification('Example'));
+});
+

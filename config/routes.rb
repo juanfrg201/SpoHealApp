@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :user_parametrizations, only: [:new, :create]
   end
 
+  resources :notifications, only: [:create]
+
 
   get '/service-worker.js', to: redirect('/public/service-worker.js')
 end

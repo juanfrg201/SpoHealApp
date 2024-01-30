@@ -16,10 +16,37 @@
     <link rel="manifest" href="/manifest.json">
 
     <script>
+      const vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64("BPMbVQ468w_BTchC4DszPnpf0b3zcebhetPhr9CBecXS20PmDSQ5HVuVQie1-hU6WIXpUywq9gzeusYw0O10hTs=").bytes %>)
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/service-worker.js')
           .then(function(registration) {
-            console.log('Service Worker registrado con éxito:', registration);
+            navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+              serviceWorkerRegistration.pushManager
+              .subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: vapidPublicKey
+              }).then(async function(sub) {
+                try {
+                  const response = await fetch('/notifications', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(sub),
+                  });
+
+                  if (!response.ok) {
+                    throw new Error('Error en la solicitud al servidor');
+                  }
+
+                  const data = await response.json();
+                  console.log(data);
+                } catch (error) {
+                  console.error('Error en la solicitud al servidor:', error);
+                }
+              });
+
+            });
           })
           .catch(function(error) {
             console.error('Error al registrar el Service Worker:', error);
