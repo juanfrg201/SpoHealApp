@@ -48,36 +48,48 @@
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
       .then(function(registration) {
-        navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
-          serviceWorkerRegistration.pushManager
-          .subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: vapidPublicKey
-          }).then(async function(sub) {
-            try {
-              const response = await fetch('/notifications', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(sub),
-              });
-
-              if (!response.ok) {
-                throw new Error('Error en la solicitud al servidor');
-              }
-
-              const data = await response.json();
-              console.log(data);
-            } catch (error) {
-              console.error('Error en la solicitud al servidor:', error);
+        return registration.pushManager.getSubscription()
+          .then(async function(subscription) {
+            if (subscription) {
+              // El usuario ya ha otorgado permisos para notificaciones
+              return subscription;
             }
-          });
 
-        });
+            // Suscríbete al servicio de notificaciones
+            const newSubscription = await registration.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: vapidPublicKey
+            });
+
+            // Envía la nueva suscripción al servidor
+            await sendSubscriptionToServer(newSubscription);
+
+            return newSubscription;
+          });
       })
       .catch(function(error) {
         console.error('Error al registrar el Service Worker:', error);
       });
+  }
+
+  async function sendSubscriptionToServer(subscription) {
+    try {
+      const response = await fetch('/notifications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(subscription),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la solicitud al servidor');
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error en la solicitud al servidor:', error);
+    }
   }
 </script>
