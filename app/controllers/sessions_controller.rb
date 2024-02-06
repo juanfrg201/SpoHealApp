@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      HelloWorker.perform_at(10.seconds.from_now)
+      HelloWorker.perform_async()
       redirect_to home_pages_path, notice: 'Inicio de sesión exitoso.'
     else
       flash[:error] = 'Usuario no encontrado, por favor registrate'
