@@ -28,7 +28,7 @@ services:
     buildCommand: bundle install
     startCommand: bundle exec sidekiq
     envVars:
-      - key: REDIS_URL
+      - key: redis://red-cmn9c6i1hbls73ckho9g:6379
         fromService:
           type: redis
           name: sidekiq-redis
