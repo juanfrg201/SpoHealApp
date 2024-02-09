@@ -6,20 +6,24 @@
       </div>
 
       <%= form_with(model: @user_activity, url: user_activities_path, method: :post, local: true) do |form| %>
+
+        <div class="field">
+          <%= form.label :rating, "Califica tu experiencia", class: "label" %>
+          <div class="container has-text-centered">
+            <div class="rating">
+              <% 1.upto(4) do |i| %>
+                <span class="star" data-rating="<%= i %>">&#9733;</span>
+              <% end %>
+            </div>
+            <%= form.hidden_field :rating, id: "stars-input", required: true %>
+          </div>
+        </div>
+
         <div class="field">
           <%= form.label :activity_id, "Nombre de la actividad", class: "label" %>
           <div class="control">
             <div class="select is-fullwidth">
               <%= form.select :activity_id, @activities, {}, class: "input", required: true %>
-            </div>
-          </div>
-        </div>
-
-        <div class="field">
-          <%= form.label :rating, class: "label" %>
-          <div class="control">
-            <div class="select is-fullwidth">
-              <%= form.select :rating, UserActivity.ratings.keys.map { |rating| ["#{rating}", rating] }, {}, class: "input", required: true %>
             </div>
           </div>
         </div>
@@ -33,3 +37,27 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const stars = document.querySelectorAll(".star");
+
+    stars.forEach((star) => {
+      star.addEventListener("click", function() {
+        const rating = star.getAttribute("data-rating");
+        updateStars(rating);
+      });
+    });
+
+    // Update star
+    function updateStars(rating) {
+      stars.forEach((star, index) => {
+        star.classList.remove("active");
+        if (index < rating) {
+          star.classList.add("active");
+        }
+      });
+      document.getElementById("stars-input").value = rating;
+    }
+  });
+</script>

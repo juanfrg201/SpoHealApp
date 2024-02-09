@@ -17,7 +17,8 @@ class UserActivitiesController < ApplicationController
   end
 
   def create
-    @user_activity = UserActivity.new(user_activity_params)
+    @user_activity = UserActivity.new(user_activity_params.except(:rating))
+    @user_activity.rating = user_activity_params[:rating].present? ? user_activity_params[:rating].to_i - 1 : 0
     @user_activity.user_id = current_user.id
     if @user_activity.save 
       redirect_to activity_recomendations_path, notice: "Gracias por registrar tu ejercicio"

@@ -139,3 +139,12 @@ body {
   transform: translateX(-50%);
   
 }
+
+.star {
+  cursor: pointer;
+  font-size: 260%;
+}
+
+.star.active {
+  color: #146c51;
+}
