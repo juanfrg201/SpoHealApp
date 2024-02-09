@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_30_215151) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_09_223327) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "intarray"
   enable_extension "plpgsql"
 
   create_table "active_days", force: :cascade do |t|
@@ -180,6 +181,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_215151) do
     t.string "years"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "activity_type_id"
+    t.index ["activity_type_id"], name: "index_users_on_activity_type_id"
   end
 
   create_table "web_push_notifications", force: :cascade do |t|
@@ -213,6 +216,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_215151) do
   add_foreign_key "user_activities", "activities"
   add_foreign_key "user_activities", "users"
   add_foreign_key "user_parametrizations", "users"
+  add_foreign_key "users", "activity_types"
   add_foreign_key "web_push_notifications", "users"
   add_foreign_key "webpush_subscriptions", "users"
 end

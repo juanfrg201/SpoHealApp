@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :community_posts
   has_many :user_activities
   has_many :webpush_subscriptions
+  has_many :activity_types
 
   def authenticate(password)
     self.password == password ? true : false

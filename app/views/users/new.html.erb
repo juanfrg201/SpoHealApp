@@ -35,6 +35,15 @@
         </div>
 
         <div class="field">
+          <%= form.label :activity_type_id, "Selecciona tu tipo de deporte favorito", class: 'label' %>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <%= form.select :activity_type_id, options_for_select(ActivityType.all.uniq.pluck(:name, :id).sort), {}, { class: "select" } %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
           <%= form.label :years, class: 'label' %>
           <div class="control">
             <%= form.number_field :years, class: 'input', required: true %>

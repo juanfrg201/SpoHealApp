@@ -13,12 +13,12 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect_to new_user_user_parametrization_path(user_id: @user.id)
       else
-        flash[:error] = 'Usuario no encontrado'
+        flash[:error] = "Error al crear el usuario. Verifique los datos: #{@user.errors}"
         redirect_to root_path
       end
     else
       session[:user_id] = nil
-      flash[:error] = 'Error al crear el usuario'
+      flash[:error] = 'Error al crear el usuario. El correo electrónico ya está en uso.'
       redirect_to root_path
     end
   end
@@ -48,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :last_name, :email,:password, :years)
+    params.require(:user).permit(:name, :last_name, :email,:password, :years, :activity_type_id)
   end
 end
