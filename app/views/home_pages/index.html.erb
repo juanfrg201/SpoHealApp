@@ -1,4 +1,5 @@
 <div class="container">
+  <button id="btn-enable-notifications">Permitir notificaciones</button>
   <div class="hero-body">
     <div class="container">
       <!-- Card con tabla -->
@@ -44,32 +45,47 @@
 </div>
 
 <script>
-  let vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64("BJG7SDVTBamvuvqQkrtYBhjuf8gY8Ckki64fT86GGd3JD_Sxmv3v2lebdwen7sOw7uBHswXnkfeCuO3_ekA7D80=").bytes %>)
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(function(registration) {
-        return registration.pushManager.getSubscription()
-          .then(async function(subscription) {
-            if (subscription) {
-              await sendSubscriptionToServer(subscription);
-              return subscription;
-            }
+  document.addEventListener('DOMContentLoaded', function() {
+    const enableNotificationsButton = document.getElementById('btn-enable-notifications');
 
-            const newSubscription = await registration.pushManager.subscribe({
-              userVisibleOnly: true,
-              applicationServerKey: vapidPublicKey
-            });
+    enableNotificationsButton.addEventListener('click', function() {
+      let vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64("BJG7SDVTBamvuvqQkrtYBhjuf8gY8Ckki64fT86GGd3JD_Sxmv3v2lebdwen7sOw7uBHswXnkfeCuO3_ekA7D80=").bytes %>)
+      Notification.requestPermission().then(function(permission) {
+        if (permission === 'granted') {
+          // Permiso otorgado, procede a registrar el Service Worker y obtener la suscripción
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+              .then(function(registration) {
+                return registration.pushManager.getSubscription()
+                  .then(async function(subscription) {
+                    if (subscription) {
+                      await sendSubscriptionToServer(subscription);
+                      return subscription;
+                    }
 
-            // Envía la nueva suscripción al servidor
-            await sendSubscriptionToServer(newSubscription);
+                    const newSubscription = await registration.pushManager.subscribe({
+                      userVisibleOnly: true,
+                      applicationServerKey: vapidPublicKey
+                    });
 
-            return newSubscription;
-          });
-      })
-      .catch(function(error) {
-        console.error('Error al registrar el Service Worker:', error);
+                    // Envía la nueva suscripción al servidor
+                    await sendSubscriptionToServer(newSubscription);
+
+                    return newSubscription;
+                  });
+              })
+              .catch(function(error) {
+                console.error('Error al registrar el Service Worker:', error);
+              });
+          }
+        } else {
+          // Permiso denegado por el usuario
+          console.log('El usuario ha denegado el permiso para recibir notificaciones.');
+        }
       });
-  }
+    });
+  });
+
 
   async function sendSubscriptionToServer(subscription) {
     try {
