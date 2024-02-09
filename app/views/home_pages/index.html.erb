@@ -55,7 +55,6 @@
               return subscription;
             }
 
-            // Suscríbete al servicio de notificaciones
             const newSubscription = await registration.pushManager.subscribe({
               userVisibleOnly: true,
               applicationServerKey: vapidPublicKey

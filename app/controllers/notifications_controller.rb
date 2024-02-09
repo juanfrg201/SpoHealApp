@@ -9,13 +9,6 @@ class NotificationsController < ApplicationController
       else 
         render json: @notification.errors.full_messages
       end
-    else
-      @notification =  WebPushNotification.where(user_id: current_user.id).last
-      if @notification.update(endpoint: params[:endpoint], auth_key: params[:keys][:auth], p256dh_key: params[:keys][:p256dh] )
-        render json: @notification
-      else
-        render json: @notification.errors.full_messages
-      end
     end
   end
 end
