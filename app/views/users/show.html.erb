@@ -21,6 +21,7 @@
           <p><strong>Edad:</strong> <%= @user.years %></p>
       </div>
       <%= link_to 'Editar Perfil', edit_user_path(@user.id), class: 'button is-success' %>
+      <%= button_to "Cerrar Sesión", session_path, method: :delete, class: "button is-danger mt-2", data: { confirm: "¿Estás seguro que deseas cerrar sesión?" } %>
     </div>
   </div>
 </section>
