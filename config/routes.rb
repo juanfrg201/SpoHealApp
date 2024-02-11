@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   root 'sessions#new'
   
+  #RegularUserrViews
   resources :home_pages, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
@@ -18,6 +19,10 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:create]
+
+  #AdminViews
+  resources :activity_types, only: [:index, :create, :new, :destroy]
+  resources :activities, only: [:index, :create, :show]
 
 
   get '/service-worker.js', to: redirect('/public/service-worker.js')

@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="hero-body">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p class="has-text-success">Tipos de actividades en la app</p>
+      </div>
+      <div class="content has-text-centered">
+        <%= render "upload_form" %>
+      </div>
+      <%= will_paginate @activity_types %>
+      <table class="table is-fullwidth">
+        <tbody>
+          <%  @activity_types.each do |activity| %>
+            <tr>
+              <td><%= activity.name %></td>
+              <td><%= truncate(activity.description, length: 15) %></td>
+              <td><%= truncate(activity.benefits, length: 15) %></td>
+              <td>Ver</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style> 
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+
+  .pagination li {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+
+  .pagination li.active {
+    background-color: #337ab7;
+    color: #fff;
+  }
+
+  .pagination a {
+    color: #337ab7;
+    text-decoration: none;
+  }
+
+  .pagination a:hover {
+    color: #23527c;
+  }
+</style>

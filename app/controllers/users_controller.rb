@@ -8,8 +8,9 @@ class UsersController < ApplicationController
 
   def create
     if !User.find_by(email: user_params[:email])
-      @user = User.new(user_params)
+      @user = User.new(user_params.except(:activity_type_id))
       if @user.save
+        @user_activity_type = UserActivityType.create(user_id: @user.id, activity_type_id: user_params[:activity_type_id])
         session[:user_id] = @user.id
         redirect_to new_user_user_parametrization_path(user_id: @user.id)
       else

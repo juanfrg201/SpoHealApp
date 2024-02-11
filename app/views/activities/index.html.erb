@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="hero-body">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p class="has-text-success">Actividades</p>
+      </div>
+      <div class="content has-text-centered">
+        <%= render "upload_form" %>
+      </div>
+      <%= will_paginate @activities %>
+      <table class="table is-fullwidth">
+        <tbody>
+          <%  @activities.each do |activity| %>
+            <tr>
+              <td><%= activity.name %></td>
+              <td><%= truncate(activity.description, length: 15) %></td>
+              <td><%= truncate(activity.benefits, length: 15) %></td>
+              <td>Ver</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

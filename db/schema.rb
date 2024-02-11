@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_09_223327) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_11_225455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "intarray"
   enable_extension "plpgsql"
@@ -96,6 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_223327) do
     t.string "benefits"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "identifier"
   end
 
   create_table "communities", force: :cascade do |t|
@@ -126,6 +127,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_223327) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
   create_table "sport_users", force: :cascade do |t|
     t.string "name"
     t.string "last_name"
@@ -149,6 +160,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_223327) do
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_user_activities_on_activity_id"
     t.index ["user_id"], name: "index_user_activities_on_user_id"
+  end
+
+  create_table "user_activity_types", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "activity_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_type_id"], name: "index_user_activity_types_on_activity_type_id"
+    t.index ["user_id"], name: "index_user_activity_types_on_user_id"
   end
 
   create_table "user_parametrizations", force: :cascade do |t|
@@ -181,8 +201,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_223327) do
     t.string "years"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "activity_type_id"
-    t.index ["activity_type_id"], name: "index_users_on_activity_type_id"
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   create_table "web_push_notifications", force: :cascade do |t|
@@ -215,8 +241,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_09_223327) do
   add_foreign_key "community_posts", "users"
   add_foreign_key "user_activities", "activities"
   add_foreign_key "user_activities", "users"
+  add_foreign_key "user_activity_types", "activity_types"
+  add_foreign_key "user_activity_types", "users"
   add_foreign_key "user_parametrizations", "users"
-  add_foreign_key "users", "activity_types"
   add_foreign_key "web_push_notifications", "users"
   add_foreign_key "webpush_subscriptions", "users"
 end

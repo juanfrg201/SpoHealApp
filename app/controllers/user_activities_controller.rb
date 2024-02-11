@@ -1,6 +1,7 @@
 class UserActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user_activity, only: [:show]
+  before_action :user_session!
 
 
   def index 

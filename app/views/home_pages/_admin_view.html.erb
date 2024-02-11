@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="hero-body">
+    <div class="container">
+  
+      <div class="mt-4"></div>
+
+      <!-- Card con recomendaciones -->
+      <div class="content has-text-centered">
+        <p class=" has-text-success">Bienvenido admin</p>
+      </div>
+      <table class="table is-fullwidth">
+        <tbody>
+          <% User.regular_all_user.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.years %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

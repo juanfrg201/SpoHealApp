@@ -148,3 +148,31 @@ body {
 .star.active {
   color: #146c51;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.pagination li {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.pagination li.active {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+.pagination a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.pagination a:hover {
+  color: #23527c;
+}

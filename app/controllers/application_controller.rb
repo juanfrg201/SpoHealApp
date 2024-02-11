@@ -22,4 +22,12 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     redirect_to root_path unless current_user
   end
+
+  def user_session! 
+    current_user.is_admin? ? false : true
+  end
+
+  def admin_session! 
+    current_user.is_admin?
+  end
 end

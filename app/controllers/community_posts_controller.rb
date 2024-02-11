@@ -1,5 +1,6 @@
 class CommunityPostsController < ApplicationController
   before_action :set_community
+  before_action :user_session!
 
   def new
     @community_post = @community.community_posts.new
