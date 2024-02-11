@@ -19,7 +19,7 @@ services:
   - type: redis
     name: redis
     ipAllowList: []
-    plan: free
+    plan: Starter
     maxmemoryPolicy: noeviction
   - type: worker
     name: sidekiq-worker
