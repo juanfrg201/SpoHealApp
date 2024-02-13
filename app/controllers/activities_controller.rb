@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_session! 
+  before_action :set_activity, only: [:show]
 
   def index
     @activities = Activity.paginate(page: params[:page], per_page: 10)
@@ -26,6 +27,10 @@ class ActivitiesController < ApplicationController
 
   def create_params 
     params.permit(:csv_file)
+  end
+
+  def set_activity
+    @activity = Activity.find(params[:id])
   end
 
 end

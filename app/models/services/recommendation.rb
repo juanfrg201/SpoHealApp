@@ -8,18 +8,13 @@ module Services
     end
 
     def perform
-      content_based_recommendations = recommend_content_based(1, 30)
-      collaborative_recommendations = recommend_collaborative
-
-      combined_recommendations = (content_based_recommendations + collaborative_recommendations).uniq
-
-      combined_recommendations.sample(rand(3..6))
+      take_activities_similares.sample(3)
     end
 
     private
 
     def recommend_content_based(intensity, duration)
-      activity_desease_filter = take_activities_deseas(@user_parameterization)
+      activity_desease_filter = take_activities_similares
       
       activities = (activity_desease_filter.where(intensity: 0) + activity_desease_filter.where(duartion: duration)).uniq
       sorted_activities = activities_with_fitness(activities).sort_by { |activity| -activity[:fitness_score] }
@@ -60,21 +55,37 @@ module Services
       fitness_score
     end
 
-    def take_activities_deseas(user_parameterization)
-      Activity.where(
-        sport_medical_restriccion: user_parameterization.sport_medical_restriccion,
-        sport_muscle_pains: user_parameterization.sport_muscle_pains,
-        general_pain: user_parameterization.general_pain,
-        is_hipertension: user_parameterization.is_hipertension,
-        is_asthma: user_parameterization.is_asthma,
-        is_chest_pain: user_parameterization.is_chest_pain,
-        pain_cardiac: user_parameterization.pain_cardiac,
-        cardiac_family_pain: user_parameterization.cardiac_family_pain,
-        cholesterol_pain: user_parameterization.cholesterol_pain,
-        dizzines_pain: user_parameterization.dizzines_pain,
-        smoke_pain: user_parameterization.smoke_pain,
-        covid_19: user_parameterization.covid_19
+    def take_activities_similares
+      user_params = @user_parameterization.attributes.slice(
+        "sport_medical_restriccion",
+        "sport_muscle_pains",
+        "general_pain",
+        "is_hipertension",
+        "is_asthma",
+        "is_chest_pain",
+        "pain_cardiac",
+        "cardiac_family_pain",
+        "cholesterol_pain",
+        "dizzines_pain",
+        "smoke_pain",
+        "covid_19"
       )
+
+      all_activities = Activity.all
+    
+      actividades_similares = all_activities.map do |actividad|
+        [actividad, calcular_similitud(user_params, actividad)]
+      end
+    
+      actividades_similares.sort_by! { |actividad, similitud| similitud }.reverse!
+    
+      actividades_similares.map(&:first)
+    end
+
+    def calcular_similitud(user_params, actividad)
+      total_features = user_params.length
+      matching_features = user_params.select { |key, value| actividad[key] == value }.length
+      matching_features.to_f / total_features
     end
 
     def filter_activity_colaborative_deseas(activities, user_parameterization)

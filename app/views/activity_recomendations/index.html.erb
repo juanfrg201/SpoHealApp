@@ -7,18 +7,30 @@
       Historial
     <% end %>
   </div>
-  <div class="content-container">
-    <div class="custom-section-container first-custom-section">
-      <div class="left-section">
-        <div class="image-container">
-          <img src="<%= asset_path('corredor.png') %>" alt="Logo corredor" class="image">
-        </div>
-      </div>
-      <div class="right-section">
-        <div class="">
-          <p class="section-text">El running es beneficioso así que trota 30 minutosss</p>
-        </div>
-      </div>
-    </div>
+  <div class="content has-text-centered mt-3">
+    <p class=" has-text-success">Selecciona una actividad</p>
   </div>
+  <% @recommendation.each do |recommendation| %>
+    <%= link_to activity_path(recommendation.id), class: "has-text-black" do %>
+      <div class="content-container">
+        <div class="custom-section-container first-custom-section">
+          <div class="left-section">
+            <div class="image-container">
+              <img src="<%= asset_path('corredor.png') %>" alt="Logo corredor" class="image">
+            </div>
+          </div>
+          <div class="right-section">
+            <div class="">
+              <strong class="section-text" style="display: block; text-align: center;">
+                <%= recommendation.name %>
+              </strong>
+            </div>
+            <div class="">
+              <p class="section-text"><%= recommendation.description %>s</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>

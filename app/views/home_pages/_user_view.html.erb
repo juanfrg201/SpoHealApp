@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container conteiner-margin">
   <button id="btn-enable-notifications">Permitir notificaciones</button>
   <div class="hero-body">
     <div class="container">
@@ -25,20 +25,29 @@
         <p class=" has-text-success">Recomendaciones</p>
       </div>
       <div class="card has-shadow-8">
-        <div class="card-content">
-          <div class="columns">
-            <div class="column">
-              <div class="content">
-                
+        
+        <% @recommendation.each do |recommendation| %>
+          <div class="content-container">
+            <div class="custom-section-container first-custom-section">
+              <div class="left-section">
+                <div class="image-container">
+                  <img src="<%= asset_path('corredor.png') %>" alt="Logo corredor" class="image">
+                </div>
               </div>
-            </div>
-            <div class="column">
-              <div class="content">
-                <p>Contenido de la segunda columna...</p>
+              <div class="right-section">
+                <div class="">
+                  <strong class="section-text" style="display: block; text-align: center;">
+                    <%= recommendation.name %>
+                  </strong>
+                </div>
+                <div class="">
+                  <p class="section-text"><%= recommendation.description %>s</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
+        
       </div>
     </div>
   </div>

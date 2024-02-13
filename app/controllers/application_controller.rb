@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :set_recomendation
   helper_method :active_user_day_weeks
+  helper_method :set_recomendation
   
   private
 

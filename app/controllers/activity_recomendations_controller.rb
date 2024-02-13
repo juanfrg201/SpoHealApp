@@ -3,6 +3,7 @@ class ActivityRecomendationsController < ApplicationController
   before_action :user_session!
 
   def index
+    @recommendation = set_recomendation
   end
   
 end

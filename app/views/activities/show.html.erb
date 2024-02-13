@@ -1,2 +1,97 @@
-<h1>Activities#show</h1>
-<p>Find me in app/views/activities/show.html.erb</p>
+<div class="container conteiner-margin">
+  <h2 class="title mt-3">
+    <strong class="" style="display: block; text-align: center;">
+      <%= @activity.name %>
+    </strong>
+  </h2>
+
+  <div class="is-flex is-justify-content-center mt-3">
+    <button class="button is-success is-rounded" onclick="openModal()">
+      Realice este ejercicio!!
+    </button>
+  </div>
+
+  <div class="is-flex is-justify-content-center mt-3">
+    <div class="image-container">
+      <img src="<%= asset_path('corredor.png') %>" alt="Logo corredor" class="image">
+    </div>
+  </div>
+
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered mt-3">
+        <p class=" has-text-success">Beneficios</p>
+      </div>
+      <div class="">
+        <p class="section-text"><%= @activity.benefits %>s</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered mt-3">
+        <p class=" has-text-success">Descripcion</p>
+      </div>
+      <div class="">
+        <p class="section-text"><%= @activity.description %>s</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="content has-text-centered mt-3">
+      <p class=" has-text-success">Tutorial</p>
+    </div>
+  </div>
+
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered mt-3">
+        <p class=" has-text-success">Links</p>
+      </div>
+      <div class="">
+        <% @activity.link.each do |link|%>
+          <p class="section-text"><%= link %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "raiting_pop_up" %>
+
+
+
+
+<script>
+  function openModal() {
+    document.getElementById('myModal').classList.add('is-active');
+  }
+
+  function closeModal() {
+    document.getElementById('myModal').classList.remove('is-active');
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const stars = document.querySelectorAll(".star");
+
+    stars.forEach((star) => {
+      star.addEventListener("click", function() {
+        const rating = star.getAttribute("data-rating");
+        updateStars(rating);
+      });
+    });
+
+    // Update star
+    function updateStars(rating) {
+      stars.forEach((star, index) => {
+        star.classList.remove("active");
+        if (index < rating) {
+          star.classList.add("active");
+        }
+      });
+      document.getElementById("stars-input").value = rating;
+    }
+  });
+</script>

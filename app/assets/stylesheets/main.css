@@ -176,3 +176,7 @@ body {
 .pagination a:hover {
   color: #23527c;
 }
+
+.popup {
+  width: 80%;
+}

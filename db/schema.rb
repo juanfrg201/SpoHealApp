@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_11_225455) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_13_175020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "intarray"
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_225455) do
     t.boolean "covid_19"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "link", default: [], array: true
     t.index ["activity_type_id"], name: "index_activities_on_activity_type_id"
   end
 

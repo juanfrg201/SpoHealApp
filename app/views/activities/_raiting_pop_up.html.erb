@@ -1,0 +1,28 @@
+<div id="myModal" class="modal">
+  <div class="modal-background" onclick="closeModal()"></div>
+  <div class="modal-content popup">
+    <div class="box">
+      <%= form_with(model: UserActivity.new, url: user_activities_path, method: :post, local: true) do |form| %>
+        <div class="field">
+          <%= form.label :rating, "Registra la actividad y califica la experiencia", class: "label" %>
+          <div class="container has-text-centered">
+            <div class="rating">
+              <% 1.upto(4) do |i| %>
+                <span class="star" data-rating="<%= i %>">&#9733;</span>
+              <% end %>
+            </div>
+            <%= form.hidden_field :rating, id: "stars-input", required: true %>
+          </div>
+        </div>
+        <%= form.hidden_field :activity_id, value: @activity.id %>
+        <%= form.hidden_field :is_show, value: true %>
+        <div class="field is-grouped">
+          <div class="control has-text-centered"> <!-- Agregado has-text-centered -->
+            <%= form.submit "Registrar", class: "button is-success" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close" onclick="closeModal()"></button>
+</div>
