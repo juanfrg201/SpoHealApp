@@ -8,51 +8,24 @@ module Services
     end
 
     def perform
-      take_activities_similares.sample(3)
+      content_recomendation = take_activities_similares
+      recomendation_colaborative = recommend_collaborative
+      combination_recommendation(content_recomendation, recomendation_colaborative)
     end
 
     private
 
-    def recommend_content_based(intensity, duration)
-      activity_desease_filter = take_activities_similares
-      
-      activities = (activity_desease_filter.where(intensity: 0) + activity_desease_filter.where(duartion: duration)).uniq
-      sorted_activities = activities_with_fitness(activities).sort_by { |activity| -activity[:fitness_score] }
-      content_based_recommendations = sorted_activities.map { |activity| activity[:activity] }
-      content_based_recommendations
-    end
-
     def recommend_collaborative
       recommender = Disco::Recommender.new
       data = ActivityRecomendation.all.map{ |a| {item_id: a.id, user_id: a.user_id, activity_id: a.activity_id, rating: ActivityRecomendation.ratings[a.rating]}}
-      recommender.fit(data)
-      recommender_data = recommender.user_recs(@user_id)
+      recommender.fit(data) if data.present?
+      recommender_data = recommender.user_recs(@user_id) if data.present?
       activities = []
-      recommender_data.each do |data|
-        activities << ActivityRecomendation.find(data[:item_id]).activity
+      if data.present?
+        recommender_data.each do |data|
+          activities << ActivityRecomendation.find(data[:item_id]).activity
+        end
       end
-
-      activityes_filtered = filter_activity_colaborative_deseas(activities, @user_parameterization)
-      sorted_activities = activities_with_fitness(activityes_filtered).sort_by { |activity| -activity[:fitness_score] }
-      collaborative_recommendations = sorted_activities.map { |activity| activity[:activity] }
-      collaborative_recommendations
-    end
-
-    def activities_with_fitness(activities)
-      activities_with_fitness = activities.map do |activity|
-        fitness_score = calculate_fitness_score(@user_parameterization.weight, @user_parameterization.height, @user_parameterization.imc, activity)
-        { activity: activity, fitness_score: fitness_score }
-      end
-      activities_with_fitness
-    end
-
-    def calculate_fitness_score(weight, height, ibm, activity)
-      activity_intensity = Activity.intensities[activity.intensity]
-      activity_duration = activity.duartion
-
-      fitness_score = (ibm.to_i * 0.4) + (activity_intensity * 0.3) + (activity_duration * 0.3)
-
-      fitness_score
     end
 
     def take_activities_similares
@@ -88,28 +61,18 @@ module Services
       matching_features.to_f / total_features
     end
 
-    def filter_activity_colaborative_deseas(activities, user_parameterization)
-      matching_activities = []
-
-      activities.each do |activity|
-        # Compara los campos de la actividad con los campos en los parámetros del usuario
-        if !activity.sport_medical_restriccion == user_parameterization.sport_medical_restriccion &&
-          !activity.sport_muscle_pains == user_parameterization.sport_muscle_pains &&
-          !activity.general_pain == user_parameterization.general_pain &&
-          !activity.is_hipertension == user_parameterization.is_hipertension &&
-          !activity.is_asthma == user_parameterization.is_asthma &&
-          !activity.is_chest_pain == user_parameterization.is_chest_pain &&
-          !activity.pain_cardiac == user_parameterization.pain_cardiac &&
-          !activity.cardiac_family_pain == user_parameterization.cardiac_family_pain &&
-          !activity.cholesterol_pain == user_parameterization.cholesterol_pain &&
-          !activity.dizzines_pain == user_parameterization.dizzines_pain && 
-          !activity.smoke_pain == user_parameterization.smoke_pain &&
-          !activity.covid_19 == user_parameterization.covid_19
-          matching_activities << activity
-        end
+    def combination_recommendation(content_recomendation, recomendation_colaborative)
+      if content_recomendation.nil? && recomendation_colaborative.nil?
+        result = [] # Ambas son nil, devuelve un array vacío
+      elsif content_recomendation.nil?
+        result = recomendation_colaborative # La recomendación colaborativa no es nil
+      elsif recomendation_colaborative.nil?
+        result = content_recomendation # La recomendación de contenido no es nil
+      else
+        result = (content_recomendation + recomendation_colaborative).uniq # Ambas tienen contenido
       end
-
-      matching_activities
+    
+      result
     end
   end
 end
