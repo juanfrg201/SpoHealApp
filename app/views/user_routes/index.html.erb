@@ -1,0 +1,48 @@
+<div class="container conteiner-margin">
+  <div class="is-flex is-justify-content-center mt-3">
+    <div class="content has-text-centered">
+      <p class="has-text-success">Tu ruta nivel <%= @route.route.level %> y una presion <%= @route.route.presure %></p>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <div class="custom-section-container first-custom-section">
+      <div class="left-section">
+        <% if @route.route.level == "facil" %>
+          <div class="image-container">
+            <img src="<%= asset_path('EasyRoute.png') %>">
+          </div>
+        <% elsif @route.route.level == "medio" %>
+          <div class="image-container">
+            <img src="<%= asset_path('MediumRoute.png') %>">
+          </div>
+        <% else %>
+          <div class="image-container">
+            <img src="<%= asset_path('HardRoute.png') %>">
+          </div>
+        <% end %>
+      </div>
+      <div class="right-section">
+        <div class="bordered-section">
+            <p class="section-text">Presion: <%= @route.route.presure %></p>
+        </div>
+        <div class="bordered-section">
+          <p class="section-text"><%= @route.route.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="is-flex is-justify-content-center mt-3">
+    <div class="content has-text-centered">
+      <p class="has-text-success">Tus recomendaciones </p>
+    </div>
+  </div>
+
+  <div class="is-flex is-justify-content-center mt-3">
+    <%= form_with(url: inactive_user_route_path(@route), method: :patch, local: true, style: "display: inline;") do |f| %>
+      <%= f.submit 'Submit', class: 'button is-danger is-rounded' %>
+    <% end %>
+  </div>
+</div>
+

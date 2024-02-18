@@ -2,6 +2,7 @@ class UserRoutesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @route = current_user.user_routes.present? ? current_user.user_routes.last : nil
   end
 
   def new
@@ -17,6 +18,16 @@ class UserRoutesController < ApplicationController
     else
       flash[:error] = 'Error al crear la ruta '
       redirect_to root_path
+    end
+  end
+
+  def inactive
+    @route = UserRoute.find(params[:id]) 
+    if @route.update(active: false, end_date: Date.today)
+      redirect_to routes_path	, notice: 'Se inactivo la ruta , crea una ruta para continuar con tu proceso'
+    else
+      flash[:error] = 'Error al descativar la ruta'
+      redirect_to user_routes_path
     end
   end
 end

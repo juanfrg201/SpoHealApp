@@ -1,0 +1,2 @@
+class NutricionTip < ApplicationRecord
+end

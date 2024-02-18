@@ -22,12 +22,12 @@
 
       <!-- Card con recomendaciones -->
       <div class="content has-text-centered">
-        <p class=" has-text-success">Recomendaciones</p>
+        <p class=" has-text-success">Tips Nutricionales</p>
       </div>
       <div class="card has-shadow-8">
         
-        <% @recommendation.each do |recommendation| %>
-          <div class="content-container">
+        <% @nutricions.each do |nutricion| %>
+          <%= link_to nutricion_tip_path(nutricion), class: "content-container has-text-black"  do %>
             <div class="custom-section-container first-custom-section">
               <div class="left-section">
                 <div class="image-container">
@@ -37,16 +37,17 @@
               <div class="right-section">
                 <div class="">
                   <strong class="section-text" style="display: block; text-align: center;">
-                    <%= recommendation.name %>
+                    <%= nutricion.name %>
                   </strong>
                 </div>
                 <div class="">
-                  <p class="section-text"><%= recommendation.description %>s</p>
+                  <p class="section-text"><%= nutricion.benefits %></p>
                 </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
+
         
       </div>
     </div>

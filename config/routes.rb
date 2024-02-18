@@ -19,8 +19,11 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:create]
-  resources :user_routes, only: [:index, :new, :create, :show]
+  resources :user_routes, only: [:index, :new, :create, :show] do
+    patch 'inactive', on: :member
+  end
   resources :routes, only: [:index, :show, :new, :create]
+  resources :nutricion_tips, only: [:index, :show, :create]
 
   #AdminViews
   resources :activity_types, only: [:index, :create, :new, :destroy]

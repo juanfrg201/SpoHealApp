@@ -1,0 +1,39 @@
+<div class="container conteiner-margin">
+  <h2 class="title mt-3">
+    <strong class="" style="display: block; text-align: center;">
+      <%= @nutricion_tip.name %>
+    </strong>
+  </h2>
+
+  <div class="is-flex is-justify-content-center mt-3">
+    <div class="image-container">
+      <img src="<%= asset_path('corredor.png') %>" alt="Logo corredor" class="image">
+    </div>
+  </div>
+
+  <div class="card has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered mt-3">
+        <p class=" has-text-success">Beneficios</p>
+      </div>
+      <div class="">
+        <p class="section-text"><%= @nutricion_tip.benefits %>s</p>
+      </div>
+    </div>
+  </div>
+
+  <% if @nutricion_tip.links.present? %>
+    <div class="card has-shadow-8">
+      <div class="card-content">
+        <div class="content has-text-centered mt-3">
+          <p class=" has-text-success">Links</p>
+        </div>
+        <div class="">
+          <% @nutricion_tip.links.each do |link|%>
+            <p class="section-text"><%= link %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

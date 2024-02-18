@@ -3,6 +3,6 @@ class HomePagesController < ApplicationController
 
   def index
     @active_days = active_user_day_weeks.pluck(:day)
-    @recommendation = set_recomendation
+    @nutricions = NutricionTip.all.sample(3)
   end
 end
