@@ -1,4 +1,4 @@
-const CACHE_NAME = 'SpoHealApp-Cache-v39';
+const CACHE_NAME = 'SpoHealApp-Cache-v40';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
