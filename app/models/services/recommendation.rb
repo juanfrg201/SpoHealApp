@@ -10,7 +10,7 @@ module Services
     def perform
       content_recomendation = take_activities_similares
       recomendation_colaborative = recommend_collaborative
-      combination_recommendation(content_recomendation, recomendation_colaborative)
+      combination_recommendation(content_recomendation, recomendation_colaborative).sample(3)
     end
 
     private

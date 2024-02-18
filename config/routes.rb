@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:create]
+  resources :user_routes, only: [:index, :new, :create, :show]
 
   #AdminViews
   resources :activity_types, only: [:index, :create, :new, :destroy]
