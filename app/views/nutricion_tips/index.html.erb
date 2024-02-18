@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="hero-body">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p class="has-text-success">Lista de nutricion</p>
+      </div>
+      <div class="content has-text-centered">
+        <%= render "upload_form" %>
+      </div>
+      <%= will_paginate @nutricion_tips %>
+      <table class="table is-fullwidth">
+        <tbody>
+          <%  @nutricion_tips.each do |nutricion_tip| %>
+            <tr>
+              <td><%= nutricion_tip.name %></td>
+              <td><%= truncate(nutricion_tip.benefits, length: 15) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style> 
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+
+  .pagination li {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+
+  .pagination li.active {
+    background-color: #337ab7;
+    color: #fff;
+  }
+
+  .pagination a {
+    color: #337ab7;
+    text-decoration: none;
+  }
+
+  .pagination a:hover {
+    color: #23527c;
+  }
+</style>

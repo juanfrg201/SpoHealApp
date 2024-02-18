@@ -1,0 +1,14 @@
+<%= form_with(url: activity_types_path, local: true, method: :post, data: { turbo: false }) do |form| %>
+  <div class="field">
+    <%= form.label :csv_file, "Archivo a importar"%>
+    <div class="control">  
+      <%= form.file_field :csv_file, required: true, class: "" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= form.submit 'Importar archivo CSV', class: 'button is-primary' %>
+    </div>
+  </div>
+<% end %>
