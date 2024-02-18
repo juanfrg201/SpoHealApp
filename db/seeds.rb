@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Route.all.destroy_all
+
 Route.create(level: 0, presure: 0, description: "Una ruta en donde el nivel de ejercicios he intensidad es bajo , y el nivel de presion es bajo")
 Route.create(level: 0, presure: 1, description: "Una ruta en donde el nivel de ejercicios he intensidad es bajo , y el nivel de presion es medio")
 Route.create(level: 0, presure: 2, description: "Una ruta en donde el nivel de ejercicios he intensidad es bajo , y el nivel de presion es alto")
