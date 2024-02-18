@@ -90,6 +90,7 @@
             <!-- Agrega tus enlaces de navegación aquí -->
             <%= link_to 'Tipo de Actividades', activity_types_path, class: 'navbar-item' %>
             <%= link_to 'Actividades', activities_path, class: 'navbar-item' %>
+            <%= button_to "Cerrar Sesión", session_path(current_user.id), method: :delete, class: "button is-danger mt-2", data: { confirm: "¿Estás seguro que deseas cerrar sesión?" } %>
         
           </div>
         </div>
@@ -139,10 +140,24 @@
                 <%# <p class="tab-bar-text">Inicio</p> %>
               <% end %>
             </div>
-            <div class="tab-bar-button">
-              <img src="<%= asset_path('ruta.png') %>" alt="Logo ruta" class="tab-bar-imagebar">
-              <%# <p class="tab-bar-text">Ruta</p> %>
-            </div>
+            <% if current_user.user_routes.present? %>
+              <% if current_user.user_routes.last.active %>
+                <%= link_to user_routes_path, class: "tab-bar-imagebar" do %>
+                    <img src="<%= asset_path('ruta.png') %>" alt="Logo comunidades" class="tab-bar-imagebar">
+                  <%# <p class="tab-bar-text">Comunidades</p> %>
+                <% end %>
+              <% else %>
+                <%= link_to routes_path, class: "tab-bar-imagebar" do %>
+                    <img src="<%= asset_path('ruta.png') %>" alt="Logo comunidades" class="tab-bar-imagebar">
+                  <%# <p class="tab-bar-text">Comunidades</p> %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to routes_path, class: "tab-bar-imagebar" do %>
+                  <img src="<%= asset_path('ruta.png') %>" alt="Logo comunidades" class="tab-bar-imagebar">
+                <%# <p class="tab-bar-text">Comunidades</p> %>
+              <% end %>
+            <% end %>
             <div class="tab-bar-button">
               <%= link_to community_index_path, class: "tab-bar-imagebar" do %>
                   <img src="<%= asset_path('comunidades.png') %>" alt="Logo comunidades" class="tab-bar-imagebar">

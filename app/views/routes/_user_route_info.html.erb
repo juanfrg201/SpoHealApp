@@ -1,0 +1,35 @@
+<div class="custom-section-container first-custom-section">
+  <div class="left-section">
+    <% if route.level == "facil" %>
+      <div class="image-container">
+        <img src="<%= asset_path('EasyRoute.png') %>">
+      </div>
+    <% elsif route.level == "medio" %>
+      <div class="image-container">
+        <img src="<%= asset_path('MediumRoute.png') %>">
+      </div>
+    <% else %>
+      <div class="image-container">
+        <img src="<%= asset_path('HardRoute.png') %>">
+      </div>
+    <% end %>
+  </div>
+  <div class="right-section">
+    <div class="bordered-section">
+      <p class="section-text"><%= route.level %></p>
+    </div>
+    <% if route.level == "facil" %>
+      <div class="bordered-section">
+        <p class="section-text">Tipo de ruta la cual todos,los ejercicios tendrian una intensidad corta , y seran faciles de realizar</p>
+      </div>
+    <% elsif route.level == "medio" %>
+      <div class="bordered-section">
+        <p class="section-text">Tipo de ruta la cual todos,los ejercicios tendrian una intensidad media , y cada ejercicio sera un poco mas dificil de ralizar</p>
+      </div>
+    <% else %>
+      <div class="bordered-section">
+        <p class="section-text">Tipo de ruta la cual todos,los ejercicios tendrian una intensidad alta en donde retes tu cuerpo a cosas dificiles</p>
+      </div>
+    <% end %>
+  </div>
+</div>

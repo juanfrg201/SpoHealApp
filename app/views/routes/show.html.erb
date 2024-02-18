@@ -1,0 +1,16 @@
+<div class="container conteiner-margin">
+  <div class="is-flex is-justify-content-center mt-3">
+    <div class="content has-text-centered">
+      <p class=" has-text-success">Seleecionaste una ruta de nivel <%= @route.level %></p>
+      <p class=" has-text-success">Selecciona la presion la cual quieres que te lleguen mensajes , entre mas baja menos mensajes y la mas alta mas mensajes</p>
+    </div>
+
+  </div>
+  <div class="content-container">
+    <% @routes.each do |route| %>
+      <%= link_to new_user_route_path(route_id: route.id), class: "has-text-black" do %>
+        <%= render "user_route_show", route: route %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

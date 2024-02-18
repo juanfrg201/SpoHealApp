@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :notifications, only: [:create]
   resources :user_routes, only: [:index, :new, :create, :show]
+  resources :routes, only: [:index, :show, :new, :create]
 
   #AdminViews
   resources :activity_types, only: [:index, :create, :new, :destroy]

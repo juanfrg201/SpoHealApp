@@ -1,2 +1,43 @@
-<h1>UserRoutes#new</h1>
-<p>Find me in app/views/user_routes/new.html.erb</p>
+<div class="container conteiner-margin">
+  <div class="is-flex is-justify-content-center mt-3">
+    <div class="content has-text-centered">
+      <p class=" has-text-success">Seleecionaste una ruta de nivel <%= @route.level %></p>
+      <p class=" has-text-success">Seleccionaste la presion <%= @route.presure%> </p>
+    </div>
+
+  </div>
+  <div class="content-container">
+    <div class="custom-section-container first-custom-section">
+      <div class="left-section">
+        <% if @route.level == "facil" %>
+          <div class="image-container">
+            <img src="<%= asset_path('EasyRoute.png') %>">
+          </div>
+        <% elsif @route.level == "medio" %>
+          <div class="image-container">
+            <img src="<%= asset_path('MediumRoute.png') %>">
+          </div>
+        <% else %>
+          <div class="image-container">
+            <img src="<%= asset_path('HardRoute.png') %>">
+          </div>
+        <% end %>
+      </div>
+      <div class="right-section">
+        <div class="bordered-section">
+            <p class="section-text">Presion: <%= @route.presure %></p>
+        </div>
+        <div class="bordered-section">
+          <p class="section-text"><%= @route.description %></p>
+        </div>
+      </div>
+    </div>
+    <div class="is-flex is-justify-content-center mt-3">
+      <%= form_with(url: user_routes_path, method: :post, local: true) do |f| %>
+        <%= f.hidden_field :route_id, value: @route.id %>
+        <%= f.submit 'Registrar ruta', class: "button is-success is-rounded" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

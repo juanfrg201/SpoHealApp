@@ -1,0 +1,16 @@
+<div class="container conteiner-margin">
+  <div class="is-flex is-justify-content-center mt-3">
+    <div class="content has-text-centered">
+      <p class=" has-text-success">Seleeciona tu Ruta ideal</p>
+      <p class=" has-text-success">Segun tu ruta se te recomendara el tipo de Actividad</p>
+    </div>
+
+  </div>
+  <div class="content-container">
+    <% @user_principal_routes.each do |route| %>
+      <%= link_to route_path(route.id), class: "has-text-black" do %>
+        <%= render "user_route_info", route: route %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="custom-section-container first-custom-section">
+  <div class="left-section">
+    <% if route.level == "facil" %>
+      <div class="image-container">
+        <img src="<%= asset_path('EasyRoute.png') %>">
+      </div>
+    <% elsif route.level == "medio" %>
+      <div class="image-container">
+        <img src="<%= asset_path('MediumRoute.png') %>">
+      </div>
+    <% else %>
+      <div class="image-container">
+        <img src="<%= asset_path('HardRoute.png') %>">
+      </div>
+    <% end %>
+  </div>
+  <div class="right-section">
+    <div class="bordered-section">
+        <p class="section-text">Presion: <%= route.presure %></p>
+    </div>
+    <div class="bordered-section">
+      <p class="section-text"><%= route.description %></p>
+    </div>
+  </div>
+</div>
