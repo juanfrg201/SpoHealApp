@@ -1,0 +1,2 @@
+<%= column_chart @user_activities, xtitle: "Semana", ytitle: "Cantidad de actividades", library: { xaxis: { mode: "time", tickFormat: "%d-%m-%Y" } } %>
+<%= pie_chart @user_activities_by_rating, xtitle: "Rating", ytitle: "Cantidad de actividades" %>

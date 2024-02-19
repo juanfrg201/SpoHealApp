@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :home_pages, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
-  resources :users, only: [:new, :create, :edit, :update, :show]
+  resources :users, only: [:new, :create, :edit, :update, :show] do 
+    resources :user_stadistics, only: [:index]
+  end
   resources :community do 
     resources :community_posts, only: [:new, :create]
   end

@@ -1,0 +1,2 @@
+module UserStadisticsHelper
+end
