@@ -26,17 +26,3 @@ services:
     ipAllowList: []
     plan: Starter
     maxmemoryPolicy: noeviction
-  - type: worker
-    name: sidekiq-worker
-    runtime: ruby
-    region: oregon
-    buildCommand: bundle install
-    startCommand: bundle exec sidekiq -C config/sidekiq.yml
-    envVars:
-      - key: REDIS_URL
-        fromService:
-          type: redis
-          name: redis
-          property: connectionString
-      - key: RAILS_MASTER_KEY
-        sync: false
