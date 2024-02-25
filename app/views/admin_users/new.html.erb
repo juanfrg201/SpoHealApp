@@ -1,0 +1,61 @@
+<section class="section">
+  <div class="card box has-shadow-8">
+    <div class="card-content">
+      <div class="content has-text-centered">
+        <p class="title is-4 has-text-success">Registra un administrador</p>
+      </div>
+
+      <%= form_with(model: @user, url: admin_users_path, method: :post, local: true) do |form| %>
+        <div class="field">
+          <%= form.label :name, class: 'label' %>
+          <div class="control">
+            <%= form.text_field :name, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :last_name, class: 'label' %>
+          <div class="control">
+            <%= form.text_field :last_name, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :email, class: 'label' %>
+          <div class="control">
+            <%= form.email_field :email, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :password, class: 'label' %>
+          <div class="control">
+            <%= form.password_field :password, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :activity_type_id, "Selecciona tu tipo de deporte favorito", class: 'label' %>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <%= form.select :activity_type_id, options_for_select(ActivityType.all.uniq.pluck(:name, :id).sort), {}, { class: "select" } %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :years, class: 'label' %>
+          <div class="control">
+            <%= form.number_field :years, class: 'input', required: true %>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit 'Registrar', class: 'button is-primary' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

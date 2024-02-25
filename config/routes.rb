@@ -34,7 +34,8 @@ Rails.application.routes.draw do
   resources :nutricion_tips, only: [:index, :show, :create] do 
     post "upload_image", on: :member
   end
-
+  resources :admin_users, only: [:new, :create]
+  
 
   get '/service-worker.js', to: redirect('/public/service-worker.js')
 end

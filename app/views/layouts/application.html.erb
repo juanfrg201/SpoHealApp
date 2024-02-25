@@ -92,6 +92,7 @@
             <%= link_to 'Tipo de Actividades', activity_types_path, class: 'navbar-item' %>
             <%= link_to 'Actividades', activities_path, class: 'navbar-item' %>
             <%= link_to 'Tipos de nutricion', nutricion_tips_path, class: 'navbar-item' %>
+            <%= link_to 'Crear Usuarios', new_admin_user_path, class: 'navbar-item' %>
             <%= button_to "Cerrar Sesión", session_path(current_user.id), method: :delete, class: "button is-danger mt-2", data: { confirm: "¿Estás seguro que deseas cerrar sesión?" } %>
         
           </div>
