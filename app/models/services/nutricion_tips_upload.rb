@@ -16,7 +16,7 @@ module Services
     private
 
     def call
-      CSV.foreach(file.path, headers: true, encoding: 'ISO-8859-1') do |row|
+      CSV.foreach(file.path, headers: true, encoding: 'UTF-8') do |row|
         activity_type_params = {
           name: row['Nombre'],
           benefits: row['Beneficio'],

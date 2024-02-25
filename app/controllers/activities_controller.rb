@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_session! 
-  before_action :set_activity, only: [:show]
+  before_action :set_activity, only: [:show, :upload_image]
 
   def index
     @activities = Activity.paginate(page: params[:page], per_page: 10)
@@ -23,6 +23,12 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def upload_image
+    @activity.update(upload_image_params)
+    flash[:notice] = "Se subio correctamente el csv"
+    redirect_to @activity
+  end
+
   private 
 
   def create_params 
@@ -31,6 +37,10 @@ class ActivitiesController < ApplicationController
 
   def set_activity
     @activity = Activity.find(params[:id])
+  end
+
+  def upload_image_params 
+    params.permit(:image)
   end
 
 end

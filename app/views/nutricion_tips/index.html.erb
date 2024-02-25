@@ -14,6 +14,15 @@
             <tr>
               <td><%= nutricion_tip.name %></td>
               <td><%= truncate(nutricion_tip.benefits, length: 15) %></td>
+              <td>
+                <div class="content has-text-centered">
+                  <%= form_with(url: upload_image_nutricion_tip_path(nutricion_tip.id), method: :post, local: true, multipart: true) do |f| %>
+                    <%= f.hidden_field :nutricion_tip_id, value: nutricion_tip.id %>
+                    <%= f.file_field :image %>
+                    <%= f.submit "Subir Imagen", class: "button is-primary is-small" %>
+                  <% end %>
+                </div>
+              </td>
             </tr>
           <% end %>
         </tbody>

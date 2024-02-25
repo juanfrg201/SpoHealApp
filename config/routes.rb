@@ -25,11 +25,15 @@ Rails.application.routes.draw do
     patch 'inactive', on: :member
   end
   resources :routes, only: [:index, :show, :new, :create]
-  resources :nutricion_tips, only: [:index, :show, :create]
 
   #AdminViews
   resources :activity_types, only: [:index, :create, :new, :destroy]
-  resources :activities, only: [:index, :create, :show]
+  resources :activities, only: [:index, :create, :show] do 
+    post "upload_image", on: :member
+  end
+  resources :nutricion_tips, only: [:index, :show, :create] do 
+    post "upload_image", on: :member
+  end
 
 
   get '/service-worker.js', to: redirect('/public/service-worker.js')
