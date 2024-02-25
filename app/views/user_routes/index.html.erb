@@ -39,9 +39,29 @@
     </div>
   </div>
 
+  <% @activities.each do |act| %>
+    <div class="content-container">
+      <div class="custom-section-container first-custom-section">
+        <div class="left-section">
+          <div class="image-container">
+            <img src="<%= asset_path('EasyRoute.png') %>">
+          </div>
+        </div>
+        <div class="right-section">
+          <div class="bordered-section">
+              <p class="section-text"> <%= act.name %></p>
+          </div>
+          <div class="bordered-section">
+            <p class="section-text"><%= act.benefits %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="is-flex is-justify-content-center mt-3">
     <%= form_with(url: inactive_user_route_path(@route), method: :patch, local: true, style: "display: inline;") do |f| %>
-      <%= f.submit 'Submit', class: 'button is-danger is-rounded' %>
+      <%= f.submit 'Terminar Ruta', class: 'button is-danger is-rounded' %>
     <% end %>
   </div>
 </div>

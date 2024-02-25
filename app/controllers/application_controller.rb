@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
-  def set_recomendation 
-    @user_recommendations ||= session[:user_id].present? ? Services::Recommendation.new(session[:user_id].to_i) : nil
+  def set_recomendation(route_id: nil)
+    @user_recommendations ||= session[:user_id].present? ? Services::Recommendation.new(session[:user_id].to_i, route_id) : nil
     @user_recommendations = @user_recommendations.perform
   end
 

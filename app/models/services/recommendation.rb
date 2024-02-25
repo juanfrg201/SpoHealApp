@@ -2,15 +2,21 @@ module Services
   class Recommendation
     attr_accessor :user_id
 
-    def initialize(user_id)
+    def initialize(user_id, route_id)
       @user_id = user_id
       @user_parameterization = User.find(@user_id).user_parametrization
+      @route_id = route_id
     end
 
     def perform
       content_recomendation = take_activities_similares
       recomendation_colaborative = recommend_collaborative
-      combination_recommendation(content_recomendation, recomendation_colaborative).sample(3)
+      if @route_id.present?
+        recomendations = combination_recommendation(content_recomendation, recomendation_colaborative)
+        routes_recommendation(recomendations).sample(3) 
+      else  
+        combination_recommendation(content_recomendation, recomendation_colaborative).sample(3)
+      end
     end
 
     private
@@ -73,6 +79,13 @@ module Services
       end
     
       result
+    end
+
+    def routes_recommendation(recomendations) 
+      user_route = Route.find(@route_id)
+      route_intensity = user_route.route_intensity
+      route_preasure = user_route.route_preasure
+      activity = Activity.where(id: recomendations.map{ |act| act.id }).where(intensity: route_intensity)
     end
   end
 end
