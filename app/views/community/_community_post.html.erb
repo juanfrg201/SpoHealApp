@@ -1,7 +1,12 @@
 <div class="custom-section-container first-custom-section">
   <div class="left-section">
     <div class="image-container">
-      <%= image_tag(community.image) %>
+      <% if community.image.attached? %>
+        <%= image_tag(community.image) %>
+      <% else %>
+        <!-- Manejo para cuando no hay imagen asociada -->
+        <p>No hay imagen disponible</p>
+      <% end %>
     </div>
   </div>
   <div class="right-section">

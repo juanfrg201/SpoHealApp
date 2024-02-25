@@ -44,7 +44,12 @@
       <div class="custom-section-container first-custom-section">
         <div class="left-section">
           <div class="image-container">
-            <img src="<%= asset_path('EasyRoute.png') %>">
+            <% if act.image.attached? %>
+              <%= image_tag(act.image) %>
+            <% else %>
+              <!-- Manejo para cuando no hay imagen asociada -->
+              <p>No hay imagen disponible</p>
+            <% end %>
           </div>
         </div>
         <div class="right-section">

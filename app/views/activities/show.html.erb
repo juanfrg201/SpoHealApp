@@ -13,7 +13,12 @@
 
   <div class="is-flex is-justify-content-center mt-3">
     <div class="image-container">
-      <%= image_tag(@activity.image) %>
+      <% if @activity.image.attached? %>
+        <%= image_tag(@activity.image) %>
+      <% else %>
+        <!-- Manejo para cuando no hay imagen asociada -->
+        <p>No hay imagen disponible</p>
+      <% end %>
     </div>
   </div>
 
