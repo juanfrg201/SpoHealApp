@@ -43,7 +43,7 @@
     const stars = document.querySelectorAll(".star");
 
     stars.forEach((star) => {
-      star.addEventListener("click", function() {
+      star.addEventListener("touchstart", function() {
         const rating = star.getAttribute("data-rating");
         updateStars(rating);
       });
