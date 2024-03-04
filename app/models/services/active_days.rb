@@ -37,7 +37,7 @@ module Services
     end
 
     def register_day
-      @user_regitser_day = @user.active_days.build(start_week: @start_week, end_week:  @end_week , day: @today_day_number)
+      @user_regitser_day = @user.active_days.build(start_week: @start_week, end_week:  @end_week , day: @today_day_number, mensage: ActiveDay.motivacional_message)
       if @user_regitser_day.save 
         @user.active_days.where(start_week: @start_week, end_week: @end_week).sort_by { |day| ActiveDay.days[day.day] }
       else
