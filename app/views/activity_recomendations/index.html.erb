@@ -8,6 +8,11 @@
     <% end %>
   </div>
   <div class="content has-text-centered mt-3">
+    <div class="has-text-centered">
+      <%= link_to user_user_stadistics_path(current_user), class: "button is-success is-rounded" do %>
+        Ver tus estadisticas
+      <% end %>
+    </div>
     <p class=" has-text-success">Selecciona una actividad</p>
   </div>
   <% @recommendation.each do |recommendation| %>
