@@ -2,6 +2,9 @@ class User < ApplicationRecord
   rolify
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, presence: true, length: { minimum: 6 }
+  validates :name, presence: true
+  validates :last_name, presence: true
+  validates :years, presence: true
   has_one :user_parametrization
   has_many :active_days
   has_many :activity_recomendations

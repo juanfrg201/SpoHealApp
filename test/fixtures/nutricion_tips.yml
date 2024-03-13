@@ -3,9 +3,9 @@
 one:
   name: MyString
   benefits: MyString
-  link: MyString
+  links: MyString
 
 two:
   name: MyString
   benefits: MyString
-  link: MyString
+  links: MyString

@@ -43,7 +43,7 @@
     const stars = document.querySelectorAll(".star");
 
     stars.forEach((star) => {
-      star.addEventListener("touchstart", function() {
+      star.addEventListener("click", function() { // Cambiado de touchstart a click para funcionamiento en dispositivos de escritorio
         const rating = star.getAttribute("data-rating");
         updateStars(rating);
       });
@@ -60,4 +60,5 @@
       document.getElementById("stars-input").value = rating;
     }
   });
+
 </script>
