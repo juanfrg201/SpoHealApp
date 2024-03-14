@@ -1,5 +1,6 @@
 class Route < ApplicationRecord
   has_many :user_routes
+  validates :description, presence: true
 
   enum level: {
     "facil" => 0,
@@ -24,9 +25,9 @@ class Route < ApplicationRecord
   end
 
   def route_preasure 
-    if self.level == "baja"
+    if self.level == "facil"
       10
-    elsif self.level == "media"
+    elsif self.level == "medio"
       30
     else
       60

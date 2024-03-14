@@ -4,6 +4,12 @@ class Activity < ApplicationRecord
   has_many :activity_recomendations
   has_many :user_activities
 
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :benefits, presence: true
+
+
+
   enum intensity: {
     "Baja" => 0,
     "Intermedia" => 1,
