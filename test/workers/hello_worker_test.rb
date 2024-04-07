@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 class HelloWorkerTest < MiniTest::Unit::TestCase
   def test_example

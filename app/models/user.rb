@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   rolify
-  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
+  validates :email, presence: true, uniqueness: { case_sensitive: false },
+                    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :password, presence: true, length: { minimum: 6 }
   validates :name, presence: true
   validates :last_name, presence: true
@@ -16,11 +19,11 @@ class User < ApplicationRecord
   has_many :user_routes
 
   def authenticate(password)
-    self.password == password ? true : false
+    self.password == password
   end
 
-  def is_admin? 
-    self.has_role? :admin
+  def is_admin?
+    has_role? :admin
   end
 
   def self.regular_all_user

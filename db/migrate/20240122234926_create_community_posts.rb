@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCommunityPosts < ActiveRecord::Migration[7.1]
   def change
     create_table :community_posts do |t|

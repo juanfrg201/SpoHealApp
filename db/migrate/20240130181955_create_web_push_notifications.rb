@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateWebPushNotifications < ActiveRecord::Migration[7.1]
   def change
     create_table :web_push_notifications do |t|
