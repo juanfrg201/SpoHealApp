@@ -44,7 +44,7 @@ class User < ApplicationRecord
     user_number = "+57"+self.user.phone_number
     message = @client.messages.create(
       body: messagegit add,
-      from: '+13343731781',
+      from: ENV['CELL_PHONE_TWILIO'],
       to: user_number
     )
 
