@@ -37,17 +37,17 @@ class User < ApplicationRecord
   end
 
 
+  require 'twilio-ruby'
+
   def notify(message)
     account_sid = 'AC42caecc04769cc29be43080a899c31ac'
     auth_token = 'a9a8f0a1d2d2253b08942cb8d0bbbe80'
     @client = Twilio::REST::Client.new(account_sid, auth_token)
-    if self.phone.present?
-      user_number = "+57#{self.phone.to_s}"
-      message = @client.messages.create(
-        body: message,
-        from: '+12513128761',
-        to: user_number
-      )
-    end
+
+    message = @client.messages.create(
+      body: message,
+      from: '+12513128761',
+      to: '+573114768402'
+    )
   end
 end
