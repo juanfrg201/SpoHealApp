@@ -2,8 +2,17 @@ class UserRoutesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @route = current_user.user_routes.present? ? current_user.user_routes.last : nil
-    @activities = set_recomendation(route_id: 9)
+    user_route = current_user.user_routes.last
+    if user_route.present?
+      if user_route.active
+        @route = user_route.id
+      else
+        @route = nil
+      end 
+    else
+      @route = nil
+    end 
+    @activities = set_recomendation(route_id: @route)
   end
 
   def new

@@ -83,7 +83,7 @@ module Services
     end
 
     def routes_recommendation(recomendations) 
-      user_route = Route.find(@route_id)
+      user_route = UserRoute.find(@route_id).route
       route_intensity = user_route.route_intensity
       route_preasure = user_route.route_preasure
       activity = Activity.where(id: recomendations.map{ |act| act.id }).where(intensity: route_intensity)
