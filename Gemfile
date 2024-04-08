@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.0.3" # Corregido a una versión válida de Ruby
+ruby "3.2.2" # Corregido a una versión válida de Ruby
 
 # Framework y gemas de Rails
 gem "rails", "~> 7.1.3"
