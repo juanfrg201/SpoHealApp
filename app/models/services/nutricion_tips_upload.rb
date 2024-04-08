@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'csv'
 module Services
   class NutricionTipsUpload
@@ -10,9 +8,9 @@ module Services
     end
 
     def perform
-      return unless @file.present?
-
-      call
+      if @file.present?
+        call
+      end
     end
 
     private
@@ -22,10 +20,11 @@ module Services
         activity_type_params = {
           name: row['Nombre'],
           benefits: row['Beneficio'],
-          links: row['Links'].present? ? row['Links'].split('*') : []
+          links: row['Links'].present? ? row['Links'].split("*") : []
         }
         NutricionTip.create(activity_type_params)
       end
     end
+    
   end
 end

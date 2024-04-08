@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CommunityPostsController < ApplicationController
   before_action :set_community
   before_action :user_session!
@@ -18,13 +16,13 @@ class CommunityPostsController < ApplicationController
     end
   end
 
-  private
+  private 
 
   def set_community
     @community = Community.find(params[:community_id])
   end
 
-  def community_post_params
+  def community_post_params 
     params.require(:community_post).permit(:issue, :body)
   end
 end

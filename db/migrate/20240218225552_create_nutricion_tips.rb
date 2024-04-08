@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateNutricionTips < ActiveRecord::Migration[7.1]
   def change
     create_table :nutricion_tips do |t|

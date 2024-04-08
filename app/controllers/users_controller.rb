@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[show update]
-  before_action :set_user, only: %i[show edit update]
+  before_action :authenticate_user!, only: [:show, :update]
+  before_action :set_user, only: [:show, :edit, :update]
 
   def new
     @user = User.new
@@ -12,8 +10,7 @@ class UsersController < ApplicationController
     if !User.find_by(email: user_params[:email])
       @user = User.new(user_params.except(:activity_type_id))
       if @user.save
-        @user_activity_type = UserActivityType.create(user_id: @user.id,
-                                                      activity_type_id: user_params[:activity_type_id])
+        @user_activity_type = UserActivityType.create(user_id: @user.id, activity_type_id: user_params[:activity_type_id])
         session[:user_id] = @user.id
         redirect_to new_user_user_parametrization_path(user_id: @user.id)
       else
@@ -27,11 +24,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit 
 
-  def show; end
+  end
 
-  def update
+  def show 
+  
+  end
+
+  def update 
     if @user.update(user_params)
       flash[:notice] = 'Perfil actualizado con éxito.'
       redirect_to user_path
@@ -40,13 +41,14 @@ class UsersController < ApplicationController
     end
   end
 
+
   private
 
-  def set_user
+  def set_user 
     @user = current_user
   end
 
   def user_params
-    params.require(:user).permit(:name, :last_name, :email, :password, :years, :activity_type_id)
+    params.require(:user).permit(:name, :last_name, :email,:password, :years, :activity_type_id)
   end
 end

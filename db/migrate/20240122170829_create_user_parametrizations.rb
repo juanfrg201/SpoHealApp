@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateUserParametrizations < ActiveRecord::Migration[7.1]
   def change
     create_table :user_parametrizations do |t|

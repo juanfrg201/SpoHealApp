@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AddColumnActiveToUserRoutes < ActiveRecord::Migration[7.1]
   def change
     add_column :user_routes, :active, :boolean

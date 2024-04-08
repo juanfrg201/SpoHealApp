@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UserRoutesController < ApplicationController
   before_action :authenticate_user!
 
@@ -9,14 +7,14 @@ class UserRoutesController < ApplicationController
   end
 
   def new
-    @user_route = UserRoute.new
+    @user_route = UserRoute.new()
     @route = Route.find(params[:route_id])
   end
 
   def create
     @route = Route.find(params[:route_id])
-    user_route = UserRoute.new(user_id: current_user.id, route_id: @route.id, start_date: Date.today, active: true)
-    if user_route.save
+    user_route = UserRoute.new(user_id: current_user.id, route_id: @route.id , start_date: Date.today, active: true)
+    if user_route.save 
       redirect_to root_path, notice: 'Ruta creada con éxito.'
     else
       flash[:error] = 'Error al crear la ruta '
@@ -25,9 +23,9 @@ class UserRoutesController < ApplicationController
   end
 
   def inactive
-    @route = UserRoute.find(params[:id])
+    @route = UserRoute.find(params[:id]) 
     if @route.update(active: false, end_date: Date.today)
-      redirect_to routes_path, notice: 'Se inactivo la ruta , crea una ruta para continuar con tu proceso'
+      redirect_to routes_path	, notice: 'Se inactivo la ruta , crea una ruta para continuar con tu proceso'
     else
       flash[:error] = 'Error al descativar la ruta'
       redirect_to user_routes_path

@@ -1,19 +1,17 @@
-# frozen_string_literal: true
-
-require 'test_helper'
+require "test_helper"
 
 class ActivitiesControllerTest < ActionDispatch::IntegrationTest
-  test 'should get index' do
+  test "should get index" do
     get activities_index_url
     assert_response :success
   end
 
-  test 'should get show' do
+  test "should get show" do
     get activities_show_url
     assert_response :success
   end
 
-  test 'should get create' do
+  test "should get create" do
     get activities_create_url
     assert_response :success
   end

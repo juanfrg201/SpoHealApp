@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :set_recomendation
   helper_method :active_user_day_weeks
   helper_method :set_recomendation
-
+  
   private
 
   def current_user
@@ -13,10 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_recomendation(route_id: nil)
-    @user_recommendations ||= if session[:user_id].present?
-                                Services::Recommendation.new(session[:user_id].to_i,
-                                                             route_id)
-                              end
+    @user_recommendations ||= session[:user_id].present? ? Services::Recommendation.new(session[:user_id].to_i, route_id) : nil
     @user_recommendations = @user_recommendations.perform
   end
 
@@ -29,11 +24,11 @@ class ApplicationController < ActionController::Base
     redirect_to root_path unless current_user
   end
 
-  def user_session!
+  def user_session! 
     current_user.is_admin? ? false : true
   end
 
-  def admin_session!
+  def admin_session! 
     current_user.is_admin?
   end
 end

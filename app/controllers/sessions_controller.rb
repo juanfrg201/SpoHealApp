@@ -1,15 +1,14 @@
-# frozen_string_literal: true
-
 class SessionsController < ApplicationController
   before_action :redirect_if_logged_in, only: [:new]
-
-  def new; end
+  
+  def new
+  end
 
   def create
     user = User.find_by(email: params[:email])
-    if user&.authenticate(params[:password])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      HelloWorker.perform_async
+      HelloWorker.perform_async()
       redirect_to home_pages_path, notice: 'Inicio de sesión exitoso.'
     else
       flash[:error] = 'Usuario no encontrado, por favor registrate'
@@ -18,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id])
+    user = User.find(params[:id])
     session[:user_id] = nil
     redirect_to root_path, notice: 'Se cerro sesion correctamente'
   end

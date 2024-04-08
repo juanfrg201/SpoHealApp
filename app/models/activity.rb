@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Activity < ApplicationRecord
   has_one_attached :image
   belongs_to :activity_type
@@ -10,9 +8,11 @@ class Activity < ApplicationRecord
   validates :description, presence: true
   validates :benefits, presence: true
 
+
+
   enum intensity: {
-    'Baja' => 0,
-    'Intermedia' => 1,
-    'Alta' => 2
+    "Baja" => 0,
+    "Intermedia" => 1,
+    "Alta" => 2
   }
 end
