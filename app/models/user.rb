@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :user_activity_types
   has_many :user_routes
 
+  after_create :notify_users
+
   def authenticate(password)
     self.password == password ? true : false
   end
@@ -25,5 +27,12 @@ class User < ApplicationRecord
 
   def self.regular_all_user
     User.where.not(id: User.with_role(:admin).pluck(:id))
+  end
+
+  def notify_users
+    ActionCable.server.broadcast("notifications_channel", {
+        title: "Hola gracias por ingresar",
+        body: "Siuuuu"
+    })
   end
 end
