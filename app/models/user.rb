@@ -38,8 +38,8 @@ class User < ApplicationRecord
 
 
   def notyfy(message)
-    account_sid = 'ACa602bda7c19efaed066a1c7c78d1c433'
-    auth_token = 'eb85d1a0cff763d58f9ac50bbd19c3ef'
+    account_sid = ENV['TWILIO_ACCOUNT_SID']
+    auth_token = ENV['TWILIO_AUTH_TOKEN']
     @client = Twilio::REST::Client.new(account_sid, auth_token)
     user_number = "+57"+self.user.phone_number
     message = @client.messages.create(
