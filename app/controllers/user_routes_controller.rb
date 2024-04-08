@@ -5,14 +5,17 @@ class UserRoutesController < ApplicationController
     user_route = current_user.user_routes.last
     if user_route.present?
       if user_route.active
-        @route = user_route.id
+        @route = user_route
+        @activities = set_recomendation(route_id: @route.id)
       else
         @route = nil
+        @activities = set_recomendation(route_id: nil)
       end 
     else
       @route = nil
+      @activities = set_recomendation(route_id: nil)
     end 
-    @activities = set_recomendation(route_id: @route)
+  
   end
 
   def new
