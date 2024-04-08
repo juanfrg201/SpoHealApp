@@ -38,16 +38,16 @@ class User < ApplicationRecord
 
 
   def notify(message)
-    account_sid = ENV['TWILIO_ACCOUNT_SID']
-    auth_token = ENV['TWILIO_AUTH_TOKEN']
-    client = Twilio::REST::Client.new(account_sid, auth_token)
-    user_number = "+57" + self.user.phone_number
-    message = client.messages.create(
-      body: message,
-      from: ENV['CELL_PHONE_TWILIO'],
-      to: user_number
-    )
-    puts message.sid
+    account_sid = 'ACa602bda7c19efaed066a1c7c78d1c433'
+    auth_token = 'dbd9dc76c7338f26f437d8925f9c6b35'
+    @client = Twilio::REST::Client.new(account_sid, auth_token)
+    if self.phone_number.present?
+      user_number = "+57" + self.phone_number.to_s
+      message = @client.messages.create(
+        body: message,
+        from: '+13343731781',
+        to: user_number
+      )
+    end
   end
-  
 end
