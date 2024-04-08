@@ -2,6 +2,7 @@ class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_session! 
   before_action :set_activity, only: [:show, :upload_image]
+  before_action :user_parameterization!
 
   def index
     @activities = Activity.paginate(page: params[:page], per_page: 10)

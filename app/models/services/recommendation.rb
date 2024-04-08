@@ -23,15 +23,16 @@ module Services
 
     def recommend_collaborative
       recommender = Disco::Recommender.new
-      data = ActivityRecomendation.all.map{ |a| {item_id: a.id, user_id: a.user_id, activity_id: a.activity_id, rating: ActivityRecomendation.ratings[a.rating]}}
+      data = UserActivity.all.map{ |a| {item_id: a.id, user_id: a.user_id, activity_id: a.activity_id, rating: UserActivity.ratings[a.rating]}}
       recommender.fit(data) if data.present?
       recommender_data = recommender.user_recs(@user_id) if data.present?
       activities = []
       if data.present?
         recommender_data.each do |data|
-          activities << ActivityRecomendation.find(data[:item_id]).activity
+          activities << UserActivity.find(data[:item_id]).activity
         end
       end
+      return activities
     end
 
     def take_activities_similares

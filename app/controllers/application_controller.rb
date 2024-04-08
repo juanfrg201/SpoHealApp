@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :set_recomendation
   helper_method :active_user_day_weeks
   helper_method :set_recomendation
+  helper_method :user_parameterization!
   
   private
 
@@ -30,5 +31,13 @@ class ApplicationController < ActionController::Base
 
   def admin_session! 
     current_user.is_admin?
+  end
+
+  def user_parameterization!
+    if current_user.user_parametrization.present?
+      true
+    else
+      redirect_to new_user_user_parametrization_path(current_user.id)
+    end
   end
 end

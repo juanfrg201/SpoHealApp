@@ -121,7 +121,7 @@
     <%= yield %>
   </body>
   <% if current_user.present? %>
-    <% if !current_user.is_admin?  %>
+    <% if !current_user.is_admin? && current_user.user_parametrization.present?  %>
       <div class="is-fixed-bottom">
         <div class="tab-bar">
           <div class="tab-bar-buttons">

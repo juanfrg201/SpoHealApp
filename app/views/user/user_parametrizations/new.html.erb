@@ -8,13 +8,13 @@
       <%= form_with(model: [@user, @user_parametrization], url: user_user_parametrizations_path(@user), method: :post, local: true) do |form| %>
 
         <div class="field">
-          <%= form.label :weight, "Tu peso (kg - EJ 81)" , class: "label" %>
-          <%= form.text_field :weight, class: "input is-primary", require: true %>
+          <%= form.label :weight, "Tu peso (kg - EJ 81)" , class: "label", require: true %>
+          <%= form.text_field :weight, class: "input is-primary", required: true, type: "number" %>
         </div>
 
         <div class="field">
-          <%= form.label :height, "Tu altura (cm - Ej 180)"  , class: "label" %>
-          <%= form.text_field :height, class: "input is-primary", require: true  %>     
+          <%= form.label :height, "Tu altura (cm - Ej 180)"  , class: "label", require: true %>
+          <%= form.text_field :height, class: "input is-primary", required: true, type: "number" %>  
         </div>
 
         <div class="field">
