@@ -26,6 +26,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 gem "rolify"
 gem "chartkick"
+gem "twilio-ruby"
 
 # Grupo de desarrollo y prueba
 group :development, :test do
