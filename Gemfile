@@ -71,7 +71,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '6.1.1'
+  gem 'rspec-rails', '~> 5.0'
 end
 
 group :development do
