@@ -6,9 +6,9 @@ services:
   - type: web
     name: SpoHeal
     env: ruby
-    buildCommand: bundle install; bundle exec rake assets:precompile; bundle exec rake assets:clean;
+    buildCommand: bundle install; bundle exec rake assets:precompile; bundle exec rake assets:clean; bundle exec rake db:migrate;
     startCommand: "bundle exec rails s"
-    plan: free
+    plan: Starter
     envVars:
       - key: DATABASE_URL
         fromDatabase:
