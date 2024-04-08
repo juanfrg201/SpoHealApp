@@ -41,8 +41,8 @@ class User < ApplicationRecord
     account_sid = 'ACa602bda7c19efaed066a1c7c78d1c433'
     auth_token = 'dbd9dc76c7338f26f437d8925f9c6b35'
     @client = Twilio::REST::Client.new(account_sid, auth_token)
-    if self.phone_number.present?
-      user_number = "+57" + self.phone_number.to_s
+    if self.phone.present?
+      user_number = "+57" + self.phone.to_s
       message = @client.messages.create(
         body: message,
         from: '+13343731781',

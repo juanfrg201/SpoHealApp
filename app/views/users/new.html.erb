@@ -21,6 +21,13 @@
         </div>
 
         <div class="field">
+          <%= form.label :phone, class: 'label' %>
+          <div class="control">
+            <%= form.text_field :phone, class: 'input', required: true, type: "number" %>
+          </div>
+        </div>
+
+        <div class="field">
           <%= form.label :email, class: 'label' %>
           <div class="control">
             <%= form.email_field :email, class: 'input', required: true %>
