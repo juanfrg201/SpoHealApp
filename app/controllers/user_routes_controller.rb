@@ -3,7 +3,7 @@ class UserRoutesController < ApplicationController
 
   def index
     @route = current_user.user_routes.present? ? current_user.user_routes.last : nil
-    @activities = set_recomendation(route_id: 1)
+    @activities = set_recomendation(route_id: 9)
   end
 
   def new
