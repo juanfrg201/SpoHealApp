@@ -37,17 +37,17 @@ class User < ApplicationRecord
   end
 
 
-  def notyfy(message)
+  def notify(message)
     account_sid = ENV['TWILIO_ACCOUNT_SID']
     auth_token = ENV['TWILIO_AUTH_TOKEN']
-    @client = Twilio::REST::Client.new(account_sid, auth_token)
-    user_number = "+57"+self.user.phone_number
-    message = @client.messages.create(
-      body: messagegit add,
+    client = Twilio::REST::Client.new(account_sid, auth_token)
+    user_number = "+57" + self.user.phone_number
+    message = client.messages.create(
+      body: message,
       from: ENV['CELL_PHONE_TWILIO'],
       to: user_number
     )
-
     puts message.sid
   end
+  
 end
