@@ -38,8 +38,8 @@ class User < ApplicationRecord
 
 
   def notify(message)
-    account_sid = 'ACa602bda7c19efaed066a1c7c78d1c433'
-    auth_token = 'dbd9dc76c7338f26f437d8925f9c6b35'
+    account_sid = 'AC42caecc04769cc29be43080a899c31ac'
+    auth_token = 'a9a8f0a1d2d2253b08942cb8d0bbbe80'
     @client = Twilio::REST::Client.new(account_sid, auth_token)
     if self.phone.present?
       user_number = "+57#{self.phone.to_s}"
