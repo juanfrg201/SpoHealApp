@@ -7,14 +7,14 @@
 
       <%= form_with(model: @community, url: community_index_path, method: :post, local: true) do |form| %>
         <div class="field">
-          <%= form.label :name, class: "label" %>
+          <%= form.label :name, "Tema" , class: "label" %>
           <div class="control">
             <%= form.text_field :name, class: "input", required: true %>
           </div>
         </div>
 
         <div class="field">
-          <%= form.label :issue, class: "label" %>
+          <%= form.label :issue, "Problema a discutir", class: "label" %>
           <div class="control">
             <%= form.text_area :issue, class: "textarea", required: true %>
           </div>
