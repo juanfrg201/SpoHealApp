@@ -1,44 +1,30 @@
-<div class="container conteiner-margin">
-  <h2 class="title mt-3">
-    <strong class="" style="display: block; text-align: center;">
-      <%= @nutricion_tip.name %>
-    </strong>
-  </h2>
+<section class="section conteiner-margin">
 
-  <div class="is-flex is-justify-content-center mt-3">
-    <div class="image-container">
-      <% if @nutricion_tip.image.attached? %>
-        <%= image_tag(@nutricion_tip.image) %>
-      <% else %>
-        <!-- Manejo para cuando no hay imagen asociada -->
-        <p>No hay imagen disponible</p>
-      <% end %>
+  <div class="card has-shadow-8 mt-2" style="">
+    <div class="card-content  has-text-centered">
+      <strong><%= @nutricion_tip.name %></strong>
     </div>
   </div>
 
   <div class="card has-shadow-8">
     <div class="card-content">
-      <div class="content has-text-centered mt-3">
-        <p class=" has-text-success">Beneficios</p>
-      </div>
-      <div class="">
-        <p class="section-text"><%= @nutricion_tip.benefits %>s</p>
+      <div class="is-16by9 has-text-centered">
+        <% if @nutricion_tip.image.attached? %>
+          <%= image_tag(@nutricion_tip.image) %>
+        <% else %>
+          <!-- Manejo para cuando no hay imagen asociada -->
+          <p>No hay imagen disponible</p>
+        <% end %>
       </div>
     </div>
   </div>
-
-  <% if @nutricion_tip.links.present? %>
-    <div class="card has-shadow-8">
-      <div class="card-content">
-        <div class="content has-text-centered mt-3">
-          <p class=" has-text-success">Links</p>
-        </div>
-        <div class="">
-          <% @nutricion_tip.links.each do |link|%>
-            <p class="section-text"><%= link %></p>
-          <% end %>
-        </div>
-      </div>
+  <div class="card has-shadow-8 mt-2" style="">
+    <div class="content has-text-centered">
+      <p class="has-text-success">Beneficios</p>
     </div>
-  <% end %>
-</div>
+    <div class="separator"></div>
+    <div class="has-text-centered margin-content-card">
+      <%= @nutricion_tip.benefits %>
+    </div>
+  </div>
+</section>
