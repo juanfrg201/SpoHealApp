@@ -1,9 +1,10 @@
-<div class="container conteiner-margin">
-  <h2 class="title mt-3">
-    <strong class="" style="display: block; text-align: center;">
-      <%= @activity.name %>
-    </strong>
-  </h2>
+<section class="section conteiner-margin">
+
+  <div class="card has-shadow-8 mt-2" style="">
+    <div class="card-content  has-text-centered">
+      <strong><%= @activity.name %></strong>
+    </div>
+  </div>
 
   <div class="is-flex is-justify-content-center mt-3">
     <button class="button is-success is-rounded" onclick="openModal()">
@@ -11,58 +12,37 @@
     </button>
   </div>
 
-  <div class="is-flex is-justify-content-center mt-3">
-    <div class="image-container">
-      <% if @activity.image.attached? %>
-        <%= image_tag(@activity.image) %>
-      <% else %>
-        <!-- Manejo para cuando no hay imagen asociada -->
-        <p>No hay imagen disponible</p>
-      <% end %>
-    </div>
-  </div>
-
   <div class="card has-shadow-8">
     <div class="card-content">
-      <div class="content has-text-centered mt-3">
-        <p class=" has-text-success">Beneficios</p>
-      </div>
-      <div class="">
-        <p class="section-text"><%= @activity.benefits %>s</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card has-shadow-8">
-    <div class="card-content">
-      <div class="content has-text-centered mt-3">
-        <p class=" has-text-success">Descripcion</p>
-      </div>
-      <div class="">
-        <p class="section-text"><%= @activity.description %>s</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="content has-text-centered mt-3">
-      <p class=" has-text-success">Tutorial</p>
-    </div>
-  </div>
-
-  <div class="card has-shadow-8">
-    <div class="card-content">
-      <div class="content has-text-centered mt-3">
-        <p class=" has-text-success">Links</p>
-      </div>
-      <div class="">
-        <% @activity.link.each do |link|%>
-          <p class="section-text"><%= link %></p>
+      <div class="is-16by9 has-text-centered">
+        <% if @activity.image.attached? %>
+          <%= image_tag(@activity.image) %>
+        <% else %>
+          <!-- Manejo para cuando no hay imagen asociada -->
+          <p>No hay imagen disponible</p>
         <% end %>
       </div>
     </div>
   </div>
-</div>
+  <div class="card has-shadow-8 mt-2" style="">
+    <div class="content has-text-centered">
+      <p class="has-text-success">Descripcion</p>
+    </div>
+    <div class="separator"></div>
+    <div class="has-text-centered margin-content-card">
+      <%= @activity.description %>
+    </div>
+  </div>
+  <div class="card has-shadow-8 mt-2" style="">
+    <div class="content has-text-centered">
+      <p class="has-text-success">Beneficios</p>
+    </div>
+    <div class="separator"></div>
+    <div class="has-text-centered margin-content-card">
+      <%= @activity.benefits %>
+    </div>
+  </div>
+</section>
 
 <%= render "raiting_pop_up" %>
 
