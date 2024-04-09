@@ -2,8 +2,8 @@
   <div class="card has-shadow-8">
     <div class="card-content">
       <div class="is-16by9 has-text-centered">
-        <% if @user_activity.activity.image.attached? %>
-          <%= image_tag(@user_activity.activity.image) %>
+        <% if @user_activity.image.attached? %>
+          <%= image_tag(@user_activity.image) %>
         <% else %>
           <!-- Manejo para cuando no hay imagen asociada -->
           <p>No hay imagen disponible</p>
