@@ -6,14 +6,14 @@
       </div>
       <%= form_with(model: [@community, @community_post], local: true) do |form| %>
         <div class="field">
-          <%= form.label :issue, class: 'label' %>
+          <%= form.label :issue, "Nombre del tema", class: 'label' %>
           <div class="control">
             <%= form.text_field :issue, class: 'input', required: true %>
           </div>
         </div>
 
         <div class="field">
-          <%= form.label :body, class: 'label' %>
+          <%= form.label :body,"Descripcion", class: 'label' %>
           <div class="control">
             <%= form.text_area :body, class: 'textarea', required: true %>
           </div>
