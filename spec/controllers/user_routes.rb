@@ -12,6 +12,8 @@ RSpec.describe UserRoutesController, type: :controller do
 
       expect(response).to be_successful
     end
+
+    
   end
 
   describe "GET #new" do
